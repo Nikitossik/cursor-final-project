@@ -1,6 +1,7 @@
 import charges from '../data';
 
 import Table from './Table.jsx';
+import AddForm from '../AddForm';
 
 function HomePage(){
     localStorage.setItem('charges', JSON.stringify(charges));
@@ -8,7 +9,8 @@ function HomePage(){
     return (
         <section className='homepage'>
             <h1>Charges</h1>
-            <Table/>
+            <Table charges={charges}/>
+            <AddForm/>
         </section>
     );
 }

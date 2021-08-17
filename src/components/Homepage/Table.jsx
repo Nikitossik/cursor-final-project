@@ -4,13 +4,13 @@ import {
     faEdit,
     faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
-// import TableRow from "./components/TableRow";
-import {TableWrapper}  from '../styles';
+import TableRow from "./TableRow";
+import {TableWrapper, StyledTable}  from '../styles';
 
-const Table = () => {
+const Table = ({charges}) => {
     return (
         <TableWrapper>
-            <table>
+            <StyledTable>
                 <thead>
                     <tr>
                         <th>Category</th>
@@ -38,18 +38,11 @@ const Table = () => {
                             </button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>Content 1</td>
-                        <td>Content 1</td>
-                        <td>Content 1</td>
-                        <td>Content 1</td>
-                        <td>Content 1</td>
-                    </tr>
-                    {/* {charges.map((charge) => (
-        <TableRow {...charge} key={charge.id} />
-        ))} */}
+                    {charges.map((charge) => (
+                        <TableRow {...charge} key={charge.id} />
+                    ))}
                 </tbody>
-            </table>
+            </StyledTable>
         </TableWrapper>
     );
 };

@@ -1,11 +1,25 @@
-const TableRow = (charge) => {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faUtensils,
+    faEdit,
+    faTrashAlt,
+} from "@fortawesome/free-solid-svg-icons";
+
+const TableRow = ({category, description, date, money}) => {
     return (
         <tr>
-            {/* <td>{charge.character}Content 1</td> */}
-            <td>Content 1</td>
-            <td>Content 1</td>
-            <td>Content 1</td>
-            <td>Content 1</td>
+            <td>{category}</td>
+            <td>{description}</td>
+            <td>{date}</td>
+            <td>{money}</td>
+            <td>
+                <button>
+                    <FontAwesomeIcon icon={faEdit} />
+                </button>
+                <button>
+                    <FontAwesomeIcon icon={faTrashAlt} />
+                </button>
+            </td>
         </tr>
     );
 };
