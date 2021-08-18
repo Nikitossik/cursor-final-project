@@ -1,0 +1,22 @@
+.wrapper{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    overflow: hidden;
+}
+
+.page{
+    height: 100vh;
+}
+
+.section{
+    padding: 40px 20px 30px 30px;
+}
+
+.nav{
+    padding-bottom:15px;
+}
+
+.navBar {
+    background-color:grey;
+    height: 100vh;
+}
