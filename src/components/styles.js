@@ -30,7 +30,7 @@ export const HeaderBalance = styled.h5`
 
 export const TableWrapper = styled.div`
   text-align: center;
-  padding: 2rem;
+  padding: 1rem;
 `;
 
 export const StyledTable = styled.table`
@@ -141,12 +141,12 @@ export const Button = styled.button`
 `;
 
 export const AddButton = styled.button`
-  width: 120px;
-  min-width: 120px;
+  width: 160px;
+  min-width: 160px;
   border-radius: 4px;
   border: 1px solid #222;
   padding: 10px 15px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   background-color: #f9e8b4;
   color: #222;
   text-decoration: none;

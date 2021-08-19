@@ -21,23 +21,6 @@ const Table = ({charges}) => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <FontAwesomeIcon icon={faUtensils} />
-                            Food
-                        </td>
-                        <td>Dinner with John</td>
-                        <td>17/08/2021</td>
-                        <td>$ 13.00</td>
-                        <td>
-                            <button>
-                                <FontAwesomeIcon icon={faEdit} />
-                            </button>
-                            <button>
-                                <FontAwesomeIcon icon={faTrashAlt} />
-                            </button>
-                        </td>
-                    </tr>
                     {charges.map((charge) => (
                         <TableRow {...charge} key={charge.id} />
                     ))}
