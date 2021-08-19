@@ -1,24 +1,17 @@
+import React, { useState} from "react";
 import charges from '../data';
 import Table from './Table';
-import {AddButton, SectionTitle} from '../styles';
-import {Switch, Route, BrowserRouter as Router} from 'react-router-dom';
-import AddChargePage from '../AddChargePage';
+import {AddButton} from '../styles';
+import AddForm from '../AddForm'
 
 function Charges() {
+    const [formActive, setFormActive] = useState(false);
     return (
-        <Router basename='/charges'>
-        <section className='charges-section section'>
-
-            <SectionTitle>Charges</SectionTitle>
-            <AddButton to='/add'>Add more charges</AddButton>
+            <section className='charges-section section'>
+            <AddButton onClick={() => setFormActive(true)}>Add more charges</AddButton>
             <Table charges={charges}/>
-
-            <Switch>
-                <Route path='/add' component={AddChargePage}/>
-            </Switch>
-            
+            <AddForm active={formActive} setActive={setFormActive}/>
         </section>
-        </Router>
     )
 }
 
