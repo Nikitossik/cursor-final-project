@@ -1,11 +1,11 @@
 import {AddFormWrapper,StyledAddForm, InputGroup, Button} from '../styles';
 
 
-function AddForm({active, setActive}) {
+function AddForm({active, setActive, title}) {
     return (
         <AddFormWrapper className={active ? "active": "inactive"} onClick={() => setActive(false)}>
         <StyledAddForm onClick={e =>e.stopPropagation()}>
-            <h1>Add new charge</h1>
+                <h1>Add new {title}</h1>
             <InputGroup>
                 <label htmlFor='total-sum' className="input-group__label">Total</label>
                 <input name='total-sum' id='total-sum' type="number" min='0' className='form-input'/>
@@ -29,7 +29,7 @@ function AddForm({active, setActive}) {
                 <label htmlFor='date' className="input-group__label">Select Date</label>
                 <input name='date' id='date' type="date" className='form-input'/>
             </InputGroup>
-            <Button>Add new income</Button>
+            <Button>Add new {title}</Button>
         </StyledAddForm>
         </AddFormWrapper>
     );

@@ -10,7 +10,7 @@ function Charges() {
             <section className='charges-section section'>
             <AddButton onClick={() => setFormActive(true)}>Add more charges</AddButton>
             <Table charges={charges}/>
-            <AddForm active={formActive} setActive={setFormActive}/>
+            <AddForm active={formActive} setActive={setFormActive} title={"charge"}/>
         </section>
     )
 }
