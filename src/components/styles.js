@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import wallet from "../assets/wallet1.jpg";
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link } from "react-router-dom";
 
 export const HeaderWrapper = styled.div`
   width: 100%;
@@ -74,12 +74,38 @@ export const StyledTable = styled.table`
     background: rgb(238, 238, 238);
   }
 `;
+export const AddFormWrapper = styled.form`
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  &.inactive {
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s;
+  }
+
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+`;
 export const StyledAddForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 350px;
+  box-shadow: 1px 1px 2px #000;
+  background-color: rgb(238, 238, 238);
+  padding: 15px;
+  border-radius: 5px;
 `;
 
 export const InputGroup = styled.div`
@@ -114,13 +140,12 @@ export const Button = styled.button`
   color: #222;
 `;
 
-export const AddButton = styled(Link)`
+export const AddButton = styled.button`
   width: 120px;
   min-width: 120px;
   border-radius: 4px;
   border: 1px solid #222;
   padding: 10px 15px;
-  width: 100%;
   font-size: 1rem;
   background-color: #f9e8b4;
   color: #222;
@@ -137,7 +162,7 @@ export const SectionTitle = styled.h2`
 export const TabNav = styled.nav`
   width: 100%;
   height: 50px;
-  background-color: #C4E2F2;
+  background-color: #c4e2f2;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -149,29 +174,28 @@ export const TabLink = styled(NavLink)`
   text-align: center;
   text-decoration: none;
   font-size: 1.1rem;
-  color: rgba(0,0,0,0.7);
+  color: rgba(0, 0, 0, 0.7);
   position: relative;
   background: #fff;
   display: inline-block;
   height: 100%;
-  
-  &::before{
-    content: '';
+
+  &::before {
+    content: "";
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     height: 3px;
     transform: scaleX(0);
-    background: #52BAF2;
+    background: #52baf2;
   }
 
-  &.${props => props.activeClassName}{
+  &.${(props) => props.activeClassName} {
     color: #000;
 
-    &::before{
+    &::before {
       transform: scale(1);
     }
-
   }
 `;
