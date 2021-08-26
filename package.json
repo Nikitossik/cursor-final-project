@@ -12,6 +12,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
+    "redux-thunk": "^2.3.0",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
@@ -42,10 +43,14 @@
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@reduxjs/toolkit": "^1.6.1",
     "gh-pages": "^3.2.3",
     "i": "^0.3.6",
     "npm": "^7.20.6",
+    "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
+    "redux": "^4.1.1",
+    "redux-devtools-extension": "^2.13.9",
     "styled-components": "^5.3.0"
   }
 }
