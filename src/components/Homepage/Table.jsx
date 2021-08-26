@@ -1,13 +1,8 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faUtensils,
-    faEdit,
-    faTrashAlt,
-} from "@fortawesome/free-solid-svg-icons";
 import TableRow from "./TableRow";
 import {TableWrapper, StyledTable}  from '../styles';
 
-const Table = ({charges}) => {
+const Table = ({rows}) => {
+
     return (
         <TableWrapper>
             <StyledTable>
@@ -21,8 +16,8 @@ const Table = ({charges}) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {charges.map((charge) => (
-                        <TableRow {...charge} key={charge.id} />
+                    {rows.map((row) => (
+                        <TableRow {...row} key={row.id} />
                     ))}
                 </tbody>
             </StyledTable>
