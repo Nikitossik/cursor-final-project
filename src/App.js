@@ -3,8 +3,7 @@ import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-d
 
 import NavBar from './components/Nav';
 
-import HomePage from "./components/Homepage";
-import AddChargePage from './components/AddChargePage';
+import HomePage from "./components/Homepage/Homepage";
 import Charts from './components/Charts/Charts.jsx';
 
 import './App.css';
@@ -37,7 +36,6 @@ function App() {
           </Route>
           <Route path="/home" component={HomePage} />
           <Route path="/charts" component={Charts} />
-          <Route path='/add' component={AddChargePage} />
         </Switch>
 
       </Router>
