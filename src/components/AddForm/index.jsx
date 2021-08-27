@@ -1,10 +1,10 @@
 import {AddFormWrapper, StyledAddForm, InputGroup, Button} from '../styles';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { add as addCharge} from '../../redux/chargesSlice';
-import { add as addIncome} from '../../redux/incomesSlice';
+import { addCharge} from '../../redux/chargesSlice';
+import { addIncome} from '../../redux/incomesSlice';
 
-function AddForm({active, setActive, title}) {
+function AddForm({active, setActive, title, parentHandler}) {
 
     const dispatch = useDispatch();
 
@@ -43,6 +43,7 @@ function AddForm({active, setActive, title}) {
                 category,
                 date
             }));
+            parentHandler();
         }
         else if (title === 'charge'){
             dispatch(addCharge({
@@ -51,6 +52,7 @@ function AddForm({active, setActive, title}) {
                 category,
                 date
             }));
+            parentHandler();
         }
     }
 

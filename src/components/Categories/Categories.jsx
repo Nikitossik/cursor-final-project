@@ -14,7 +14,7 @@ const Categories = () => {
                 <Redirect to='/charges'/>
 
              <TabNav>
-                <TabLink exact to='/charges' activeClassName='tab--active'>Charges Categories</TabLink>
+                <TabLink exact="true" to='/charges' activeClassName='tab--active'>Charges Categories</TabLink>
                 <TabLink to='/incomes' activeClassName='tab--active'>Incomes Categories</TabLink>
             </TabNav>
 
