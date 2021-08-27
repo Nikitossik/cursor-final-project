@@ -1,7 +1,7 @@
 import TableRow from "./TableRow";
 import {TableWrapper, StyledTable}  from '../styles';
 
-const Table = ({rows}) => {
+const Table = ({data}) => {
 
     return (
         <TableWrapper>
@@ -16,7 +16,7 @@ const Table = ({rows}) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {rows.map((row) => (
+                    {data.map((row) => (
                         <TableRow {...row} key={row.id} />
                     ))}
                 </tbody>
