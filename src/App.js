@@ -34,7 +34,7 @@ function App() {
       <Router>
         <NavBar />
         <Switch>
-          <Route exact path="/">
+          <Route exact="true" path="/">
             <Redirect to="/home/charges" />
           </Route>
           <Route path="/home" component={HomePage} />
