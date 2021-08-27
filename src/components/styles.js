@@ -74,7 +74,7 @@ export const StyledTable = styled.table`
     background: rgb(238, 238, 238);
   }
 `;
-export const AddFormWrapper = styled.form`
+export const AddFormWrapper = styled.div`
   width: 100%;
   height: 100vh;
   position: fixed;
@@ -197,5 +197,27 @@ export const TabLink = styled(NavLink)`
     &::before {
       transform: scale(1);
     }
+  }
+`;
+
+export const MessageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 10px 30px;
+
+  & .message-title{
+    font-size: 2rem;
+    line-height: 1.5;
+    font-weight: 500;
+    color: #4C83CA;
+  }
+
+  & .message-image{
+    margin-top: 30px;
+    display: block;
+    max-width: 350px;
+    height: auto;
+    object-fit: cover;
   }
 `;
