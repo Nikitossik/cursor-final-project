@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 import BalanceHeader from '../BalanceHeader';
 import ChargesCategories from './ChargesCategories';
 import IncomesCategories from './IncomesCategories';
@@ -11,15 +11,16 @@ const Categories = () => {
             <section>
                 <BalanceHeader />
                 <Router basename='/categories'>
+                <Redirect to='/charges'/>
 
              <TabNav>
-                <TabLink exact to='/chargescategories' activeClassName='tab--active'>Charges Categories</TabLink>
-                <TabLink to='/incomescategories' activeClassName='tab--active'>Incomes Categories</TabLink>
+                <TabLink exact to='/charges' activeClassName='tab--active'>Charges Categories</TabLink>
+                <TabLink to='/incomes' activeClassName='tab--active'>Incomes Categories</TabLink>
             </TabNav>
 
             <Switch>
-                <Route path='/chargescategories' component={ChargesCategories}/>
-                <Route path='/incomescategories' component={IncomesCategories}/>
+                <Route path='/charges' component={ChargesCategories}/>
+                <Route path='/incomes' component={IncomesCategories}/>
             </Switch>
         </Router>
         </section>
