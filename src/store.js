@@ -14,13 +14,17 @@
 
 // export default store;
 
-import { configureStore } from '@reduxjs/toolkit';
-import chargesReducer from './redux/chargesSlice';
-import incomesReducer from './redux/incomesSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import chargesReducer from "./redux/chargesSlice";
+import incomesReducer from "./redux/incomesSlice";
+import chargesCategoriesReducer from "./redux/chargesCategoriesSlice";
+import incomesCategoriesReducer from "./redux/incomesCategoriesSlice";
 
 export default configureStore({
-    reducer: {
-        charges: chargesReducer,
-        incomes: incomesReducer
-    },
+  reducer: {
+    charges: chargesReducer,
+    incomes: incomesReducer,
+    chargesCategories: chargesCategoriesReducer,
+    incomesCategories: incomesCategoriesReducer,
+  },
 });

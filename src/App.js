@@ -1,12 +1,17 @@
-import { createGlobalStyle } from 'styled-components';
-import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
+import { createGlobalStyle } from "styled-components";
+import {
+  Route,
+  BrowserRouter as Router,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 
-import NavBar from './components/Nav';
-
+import NavBar from "./components/Nav";
 import HomePage from "./components/Homepage/Homepage";
-import Charts from './components/Charts/Charts.jsx';
+import Charts from "./components/Charts/Charts.jsx";
+import Categories from "./components/Categories/Categories";
 
-import './App.css';
+import "./App.css";
 
 const Global = createGlobalStyle`
   *, *::before, *::after{
@@ -23,24 +28,21 @@ const Global = createGlobalStyle`
 
 function App() {
   return (
-    <div className='wrapper'>
-
+    <div className="wrapper">
       <Global />
 
       <Router>
-
         <NavBar />
         <Switch>
-          <Route exact path='/'>
-            <Redirect to='/home/charges' />
+          <Route exact path="/">
+            <Redirect to="/home/charges" />
           </Route>
           <Route path="/home" component={HomePage} />
+          <Route path="/categories" component={Categories} />
           <Route path="/charts" component={Charts} />
         </Switch>
-
       </Router>
-
-    </div >
+    </div>
   );
 }
 
