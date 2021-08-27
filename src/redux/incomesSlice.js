@@ -1,16 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { v4 as uuidv4 } from 'uuid';
 
 export const slice = createSlice({
     name: 'incomes',
     initialState: [],
     reducers: {
-        add: (state, action) => {
-            state.push({ ...action.payload });
-        },
+        hydrateIncomes: (state, action) => action.payload,
+        addIncome: (state, action) => {
+            state.push({ ...action.payload, id: uuidv4() });
+        }
     },
 });
 
-export const { add } = slice.actions;
+export const { addIncome, hydrateIncomes } = slice.actions;
 
 export const selectIncomes = state => state.incomes;
 
