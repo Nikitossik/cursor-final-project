@@ -120,7 +120,7 @@ export const InputGroup = styled.div`
 
   .form-input,
   .form-select {
-    padding: 10px 15px;
+    padding: 8px 15px;
     font-size: 0.8rem;
     border: 1px solid #222;
     border-radius: 4px;
