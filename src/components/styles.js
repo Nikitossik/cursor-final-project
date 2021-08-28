@@ -106,6 +106,15 @@ export const StyledAddForm = styled.form`
   background-color: rgb(238, 238, 238);
   padding: 15px;
   border-radius: 5px;
+  position: relative;
+  .close-btn {
+    border: none;
+    width: 10px;
+    text-align: right;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
 `;
 
 export const InputGroup = styled.div`
@@ -206,14 +215,14 @@ export const MessageContainer = styled.div`
   align-items: center;
   padding: 20px 10px 30px;
 
-  & .message-title{
+  & .message-title {
     font-size: 2rem;
     line-height: 1.5;
     font-weight: 500;
-    color: #4C83CA;
+    color: #4c83ca;
   }
 
-  & .message-image{
+  & .message-image {
     margin-top: 30px;
     display: block;
     max-width: 350px;
