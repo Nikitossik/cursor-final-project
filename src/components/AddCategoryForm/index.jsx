@@ -49,7 +49,8 @@ function AddCategoryForm({active, setActive, title}) {
 
     return (
         <AddFormWrapper className={active ? "active": "inactive"} onClick={() => setActive(false)}>
-        <StyledAddForm onClick={e =>e.stopPropagation()}>
+            <StyledAddForm onClick={e => e.stopPropagation()}>
+                <button className="close-btn" onClick={() => setActive(false)}>X</button>
                 <h1>Add new category</h1>
             <InputGroup>
                 <label htmlFor='category-name' className="input-group__label">Name</label>

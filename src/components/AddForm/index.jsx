@@ -58,8 +58,9 @@ function AddForm({active, setActive, title, parentHandler}) {
 
     return (
         <AddFormWrapper className={active ? "active": "inactive"} onClick={() => setActive(false)}>
-        <StyledAddForm onClick={e =>e.stopPropagation()}>
-                <h1>Add new {title}</h1>
+            <StyledAddForm onClick={e => e.stopPropagation()}>
+                <button className="close-btn" onClick={() => setActive(false)}>X</button>
+                    <h1>Add new {title}</h1>   
             <InputGroup>
                 <label htmlFor='total-sum' className="input-group__label">Total</label>
                 <input onInput={handleInput} name='total-sum' id='total-sum' type="number" min='0' className='form-input'/>
