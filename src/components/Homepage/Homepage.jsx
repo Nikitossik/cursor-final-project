@@ -7,10 +7,25 @@ import Incomes from './Incomes';
 
 import {TabNav, TabLink} from '../styles';
 
+import {useState, useEffect} from 'react';
+
 function HomePage(){
+
+    const [balance, setBalance] = useState(0);
+
+    const getBalanceFromLocalStorage = () => {
+        const reduxState = JSON.parse(localStorage.getItem('reduxState'));
+        const localBalance = reduxState ? reduxState.balance : 0;
+        setBalance(localBalance);
+    }
+
+    useEffect(() => {
+        getBalanceFromLocalStorage();
+    }, []);
+
     return (
         <section className='homepage page'>
-            <BalanceHeader/>
+            <BalanceHeader balance={balance}/>
             <Router basename='/home'>
 
              <TabNav>
@@ -19,8 +34,12 @@ function HomePage(){
             </TabNav>
 
             <Switch>
-                <Route path='/charges' component={Charges}/>
-                <Route path='/incomes' component={Incomes}/>
+                <Route path='/charges'>
+                    <Charges getBalance={getBalanceFromLocalStorage}/>
+                </Route>
+                <Route path='/incomes'>
+                    <Incomes getBalance={getBalanceFromLocalStorage}/>
+                </Route>
             </Switch>
         </Router>
         </section>
