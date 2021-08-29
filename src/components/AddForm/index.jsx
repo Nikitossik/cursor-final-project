@@ -3,8 +3,9 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addCharge} from '../../redux/chargesSlice';
 import { addIncome} from '../../redux/incomesSlice';
+import { calculate } from '../../redux/balanceSlice'
 
-function AddForm({active, setActive, title, parentHandler}) {
+function AddForm({active, setActive, title, parentHandler, getBalance}) {
 
     const dispatch = useDispatch();
 
@@ -43,7 +44,9 @@ function AddForm({active, setActive, title, parentHandler}) {
                 category,
                 date
             }));
+            dispatch(calculate(+money));
             parentHandler();
+            getBalance();
         }
         else if (title === 'charge'){
             dispatch(addCharge({
@@ -52,7 +55,9 @@ function AddForm({active, setActive, title, parentHandler}) {
                 category,
                 date
             }));
+            dispatch(calculate(-money));
             parentHandler();
+            getBalance();
         }
     }
 
