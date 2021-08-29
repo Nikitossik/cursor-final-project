@@ -1,9 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 
+const reduxState = JSON.parse(localStorage.getItem('reduxState'));
+let initialState = [];
+
+if (reduxState) initialState = reduxState.charges;
+
 export const slice = createSlice({
     name: 'charges',
-    initialState: [],
+    initialState: initialState,
     reducers: {
         hydrateCharges: (state, action) => action.payload,
         addCharge: (state, action) => {

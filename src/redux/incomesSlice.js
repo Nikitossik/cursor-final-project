@@ -1,9 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 
+const reduxState = JSON.parse(localStorage.getItem('reduxState'));
+let initialState = [];
+
+if (reduxState) initialState = reduxState.incomes;
+
 export const slice = createSlice({
     name: 'incomes',
-    initialState: [],
+    initialState: initialState,
     reducers: {
         hydrateIncomes: (state, action) => action.payload,
         addIncome: (state, action) => {
