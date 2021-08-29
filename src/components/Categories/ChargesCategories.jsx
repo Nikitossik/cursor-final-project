@@ -13,7 +13,7 @@ import EDUCATION from "../../assets/education.jpg";
 import HOUSEWARE from "../../assets/houseware.jpg";
 import HEALTH from "../../assets/med.jpg";
 import {
-    faUtensils,
+  faUtensils,
   faCar,
   faUserGraduate,
   faTshirt,
@@ -26,44 +26,51 @@ function ChargesCategories() {
     const groupCategories = [
   {
     id: 1,
-    title: "Food",
+    value: 'food',
+    label: `Food`,
     icon: <FontAwesomeIcon icon={faUtensils} />,
     background: FOOD
   },
   {
     id: 2,
-    title: "Сlothing & Shoes",
-      icon: <FontAwesomeIcon icon={faTshirt} />,
+    value: "clothing-and-shoes",
+    label: "Сlothing & Shoes",
+    icon: <FontAwesomeIcon icon={faTshirt} />,
     background: CLOTHING,
   },
   {
     id: 3,
-    title: "Education & Vacation",
+    value: 'education-and-vacation',
+    label: "Education & Vacation",
     icon: <FontAwesomeIcon icon={faUserGraduate} />,
     background: EDUCATION
   },
   {
     id: 4,
-    title: "Сar & Transport Services",
+    value: "car-and-transport-services",
+    label: "Сar & Transport Services",
       icon: <FontAwesomeIcon icon={faCar} />,
     background: AUTO,
   },
   {
     id: 5,
-    title: "Bill Payments",
+    value: "bill-payments",
+    label: "Bill Payments",
     icon: <FontAwesomeIcon icon={faFileInvoiceDollar}/>,
     background: PAYMENTS,
   },
   {
     id: 6,
-    title: "Health & Beauty",
+    value: "health-and-beauty",
+    label: "Health & Beauty",
     icon: <FontAwesomeIcon icon={faMedkit} />,
     background: HEALTH,
   },
   {
     id: 7,
-    title: "Household Appliances & Homeware",
-      icon: <FontAwesomeIcon icon={faLaptopHouse} />,
+    value: "household-appliances-and-homeware",
+    label: "Household Appliances & Homeware",
+    icon: <FontAwesomeIcon icon={faLaptopHouse} />,
     background: HOUSEWARE,
   },
 ];

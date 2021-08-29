@@ -15,22 +15,26 @@ function IncomesCategories() {
     const groupCategories = [
   {
     id: 1,
-    title: "Salary & Pension",
+    value: 'salary-and-pension',
+    label: "Salary & Pension",
     icon: <FontAwesomeIcon icon={faUtensils}/>,
   },
   {
     id: 2,
-    title: "Interest Income",
+    value: 'interest-and-income',
+    label: "Interest Income",
     icon: <FontAwesomeIcon icon={faTshirt}/>,
   },
   {
     id: 3,
-    title: "Rental & Sale Income",
+    value: 'rental-and-sale-income',
+    label: "Rental & Sale Income",
     icon: <FontAwesomeIcon icon={faUserGraduate}/>,
   },
   {
     id: 4,
-    title: "Other Incomes",
+    value: 'other-incomes',
+    label: "Other Incomes",
     icon: <FontAwesomeIcon icon={faCar}/>,
   }
 ];
