@@ -4,6 +4,19 @@ import { useDispatch } from 'react-redux';
 import { add as addIncomesCategories } from '../../redux/incomesCategoriesSlice';
 import { add as addChargesCategories } from '../../redux/chargesCategoriesSlice';
 
+import Select, {components} from 'react-select';
+
+const {Option} = components;
+
+const IconOption = (props) => {
+    return (
+        <Option {...props}>
+            <span className='option-icon'>{props.data.icon}</span>
+            {props.label}
+      </Option>
+    );
+}
+
 function AddCategoryForm({ active, setActive, title, groupCategories }) {
     const dispatch = useDispatch();
     const [categoryName, setCategoryName] = useState('');
@@ -61,11 +74,22 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
             </InputGroup>
             <InputGroup>
                 <label htmlFor='group-category' className="input-group__label">Select category type</label>
-                    <select onInput={handleInput} name='group-category' id='group-category' className='form-select'>
-                         {groupCategories.map((group) => (
-            <option {...group} key={group.id}>{group.icon} {group.title}</option>
-          ))}
-                </select>
+                    {/* <select onInput={handleInput} name='group-category' id='group-category' className='form-select'>
+                         {
+                         groupCategories.map((group) => (
+                        <option {...group} key={group.id}>
+                            {group.icon}
+                            {group.title}
+                        </option>
+                    ))}
+                </select> */}
+                <Select 
+                    isSearchable 
+                    isClearable 
+                    className='form-select' 
+                    options={groupCategories}
+                    components={{ Option: IconOption }}
+                />
             </InputGroup>
             <Button onClick={handleClick}>Add new category</Button>
         </StyledAddForm>
