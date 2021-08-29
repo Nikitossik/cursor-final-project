@@ -8,7 +8,7 @@ const NavBar = () => {
             <nav className='navBar'>
                 <img className="logo" src={LOGO} alt="logo" />
                 <div className='nav'>
-                    <Link exact to='/home/charges'> Homepage </Link>
+                    <Link to='/home/charges'> Homepage </Link>
                 </div>
 
                 <div className='nav'>  
