@@ -5,7 +5,7 @@ const CategoryCard = (group) => {
         <CategoryCardWrapper>
                         <img src={group.background} alt="img21"/>
                         <div className="card-content">
-                            <h3>{group.title}</h3>
+                            <h3>{group.label}</h3>
                             <ul>
                                 <li>Category 1</li>
                                 <li>Category 2</li>
