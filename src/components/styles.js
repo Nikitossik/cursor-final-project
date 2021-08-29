@@ -261,7 +261,7 @@ export const StyledSortForm = styled.form`
 export const CategoryBlock = styled.div`
 display: flex;
 flex-wrap: wrap;
-justify-content: flex - start;
+justify-content: flex-start;
 `;
 
 export const CategoryCardWrapper = styled.div`
