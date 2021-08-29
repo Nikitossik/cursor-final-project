@@ -6,7 +6,7 @@ import MessageEmpty from "./MessageEmpty";
 import SortForm from "./SortForm";
 
 
-function Incomes() {
+function Incomes({getBalance}) {
     const messageText = 'You don\'t have any incomes yet';
 
     const [renderData, setRenderData] = useState([]);
@@ -20,9 +20,7 @@ function Incomes() {
     }
 
     useEffect(() => {
-        const reduxState = JSON.parse(localStorage.getItem('reduxState'));
-        const localIncomes = reduxState ? reduxState.incomes : [];
-        setRenderData(localIncomes);
+        getIncomesFromLocalStorage()
     }, []);
 
     return (
@@ -43,6 +41,7 @@ function Incomes() {
                 setActive={setFormActive} 
                 title="income"
                 parentHandler={getIncomesFromLocalStorage}
+                getBalance={getBalance}
             />
         </section>
     )

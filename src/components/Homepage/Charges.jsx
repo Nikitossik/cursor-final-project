@@ -5,7 +5,7 @@ import AddForm from '../AddForm';
 import MessageEmpty from "./MessageEmpty";
 import SortForm from "./SortForm";
 
-function Charges() {
+function Charges({getBalance}) {
     const messageText = 'You don\'t have any charges yet';
     
     const [renderData, setRenderData] = useState([]);
@@ -19,16 +19,13 @@ function Charges() {
     }
 
     useEffect(() => {
-        const reduxState = JSON.parse(localStorage.getItem('reduxState'));
-        const localCharges = reduxState ? reduxState.charges : [];
-        setRenderData(localCharges);
+        getChargesFromLocalStorage()
     },[]);
 
     return (
             <section className='charges-section section'>
                 <AddButton onClick={() => setFormActive(true)}>Add more charges</AddButton>
                 <SortForm saveSortParams={setSortParams}/>
-                
                 {
                     renderData.length !== 0 ? 
                         <Table 
@@ -43,6 +40,7 @@ function Charges() {
                     setActive={setFormActive} 
                     title="charge" 
                     parentHandler={getChargesFromLocalStorage}
+                    getBalance={getBalance}
                 />
             </section>
     )
