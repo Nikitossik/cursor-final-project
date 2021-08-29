@@ -2,10 +2,9 @@ import { AddFormWrapper, StyledAddForm, InputGroup, Button } from '../styles';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { add as addIncomesCategories } from '../../redux/incomesCategoriesSlice';
-import { add as addChargesCategories} from '../../redux/chargesCategoriesSlice';
+import { add as addChargesCategories } from '../../redux/chargesCategoriesSlice';
 
-function AddCategoryForm({active, setActive, title}) {
-
+function AddCategoryForm({ active, setActive, title, groupCategories }) {
     const dispatch = useDispatch();
     const [categoryName, setCategoryName] = useState('');
     const [description, setDescription] = useState('');
@@ -23,7 +22,7 @@ function AddCategoryForm({active, setActive, title}) {
                 break;
             case 'group-category':
                 setGroupCategory(value);
-                break;   
+                break;
             default:
                 break;
         }
@@ -33,14 +32,14 @@ function AddCategoryForm({active, setActive, title}) {
         e.preventDefault();
         if (title === 'incomesCategories'){
             dispatch(addIncomesCategories({
-                categoryName, 
+                categoryName,
                 description,
                 groupCategory,
             }));
         }
         else if (title === 'chargeCategories'){
             dispatch(addChargesCategories({
-                categoryName, 
+                categoryName,
                 description,
                 groupCategory
             }));
@@ -53,7 +52,7 @@ function AddCategoryForm({active, setActive, title}) {
                 <button className="close-btn" onClick={() => setActive(false)}>X</button>
                 <h1>Add new category</h1>
             <InputGroup>
-                <label htmlFor='category-name' className="input-group__label">Name</label>
+                <label htmlFor='category-name' className="input-group__label"> Name</label>
                 <input onInput={handleInput} name='category-name' id='category-name' type="text" className='form-input'/>
             </InputGroup>
             <InputGroup>
@@ -62,13 +61,10 @@ function AddCategoryForm({active, setActive, title}) {
             </InputGroup>
             <InputGroup>
                 <label htmlFor='group-category' className="input-group__label">Select category type</label>
-                <select onInput={handleInput} name='group-category' id='group-category' className='form-select'>
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                    <option value="Option 4">Option 4</option>
-                    <option value="Option 5">Option 5</option>
-                    <option value="Option length">Option that has too long of a value to fit</option>
+                    <select onInput={handleInput} name='group-category' id='group-category' className='form-select'>
+                         {groupCategories.map((group) => (
+            <option {...group} key={group.id}>{group.icon} {group.title}</option>
+          ))}
                 </select>
             </InputGroup>
             <Button onClick={handleClick}>Add new category</Button>
