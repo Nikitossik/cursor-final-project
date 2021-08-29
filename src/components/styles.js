@@ -143,10 +143,12 @@ export const Button = styled.button`
   border-radius: 4px;
   border: 1px solid #222;
   padding: 10px 15px;
-  width: 100%;
+  max-width: 100%;
+  min-width: 120px;
   font-size: 1rem;
   background-color: #f9e8b4;
   color: #222;
+  cursor: pointer;
 `;
 
 export const AddButton = styled.button`
@@ -159,6 +161,7 @@ export const AddButton = styled.button`
   background-color: #f9e8b4;
   color: #222;
   text-decoration: none;
+  cursor: pointer;
 `;
 
 export const SectionTitle = styled.h2`
@@ -228,5 +231,28 @@ export const MessageContainer = styled.div`
     max-width: 350px;
     height: auto;
     object-fit: cover;
+  }
+`;
+
+export const StyledSortForm = styled.form`
+  min-width: 120px;
+
+  & .sort-label{
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-right: 5px;
+  }
+
+  & .sort-select{
+    padding: 8px 15px;
+    font-size: 0.8rem;
+    border: 1px solid #222;
+    border-radius: 4px;
+    min-width: 120px;
+    margin-right: 10px;
+  }
+
+  & .reverse-checkbox{
+    margin-right: 10px;
   }
 `;
