@@ -4,12 +4,11 @@ import ChargesCategories from './ChargesCategories';
 import IncomesCategories from './IncomesCategories';
 import {TabNav, TabLink} from '../styles';
 
-const Categories = () => {
+const Categories = ({balance}) => {
 
     return (
-        <div>
-            <section>
-                <BalanceHeader />
+            <section className='categories-page page'>
+                <BalanceHeader balance={balance}/>
                 <Router basename='/categories'>
                 <Redirect to='/charges'/>
 
@@ -24,7 +23,6 @@ const Categories = () => {
             </Switch>
         </Router>
         </section>
-        </div>
     );
 };
 

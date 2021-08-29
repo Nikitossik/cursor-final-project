@@ -11,6 +11,8 @@ import HomePage from "./components/Homepage/Homepage";
 import Charts from "./components/Charts/Charts.jsx";
 import Categories from "./components/Categories/Categories";
 
+import { useState, useEffect } from 'react';
+
 import "./App.css";
 
 const Global = createGlobalStyle`
@@ -27,6 +29,19 @@ const Global = createGlobalStyle`
 `;
 
 function App() {
+
+  const [balance, setBalance] = useState(0);
+
+  const getBalanceFromLocalStorage = () => {
+    const reduxState = JSON.parse(localStorage.getItem('reduxState'));
+    const localBalance = reduxState ? reduxState.balance : 0;
+    setBalance(localBalance);
+  }
+
+  useEffect(() => {
+    getBalanceFromLocalStorage();
+  }, []);
+
   return (
     <div className="wrapper">
       <Global />
@@ -37,9 +52,15 @@ function App() {
           <Route exact path="/">
             <Redirect to="/home/charges" />
           </Route>
-          <Route path="/home" component={HomePage} />
-          <Route path="/categories" component={Categories} />
-          <Route path="/charts" component={Charts} />
+          <Route path="/home">
+            <HomePage getBalance={getBalanceFromLocalStorage} balance={balance} />
+          </Route>
+          <Route path="/categories">
+            <Categories balance={balance} />
+          </Route>
+          <Route path="/charts">
+            <Charts balance={balance} />
+          </Route>
         </Switch>
       </Router>
     </div>
