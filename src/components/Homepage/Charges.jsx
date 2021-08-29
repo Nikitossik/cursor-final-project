@@ -1,15 +1,16 @@
-import React, { useState} from "react";
+import React, { useState, useEffect} from "react";
 import Table from './Table';
-import { AddButton } from '../styles';
+import { AddButton} from '../styles';
 import AddForm from '../AddForm';
 import MessageEmpty from "./MessageEmpty";
-
+import SortForm from "./SortForm";
 
 function Charges() {
     const messageText = 'You don\'t have any charges yet';
-    const reduxState = JSON.parse(localStorage.getItem('reduxState'));
-    const localCharges = reduxState ? reduxState.charges : [];
-    const [renderData, setRenderData] = useState(localCharges);
+    
+    const [renderData, setRenderData] = useState([]);
+    const [formActive, setFormActive] = useState(false);
+    const [sortParams, setSortParams] = useState({});
 
     const getChargesFromLocalStorage = e => {
         const reduxState = JSON.parse(localStorage.getItem('reduxState'));
@@ -17,14 +18,23 @@ function Charges() {
         setRenderData(localCharges);
     }
 
-    const [formActive, setFormActive] = useState(false);
+    useEffect(() => {
+        const reduxState = JSON.parse(localStorage.getItem('reduxState'));
+        const localCharges = reduxState ? reduxState.charges : [];
+        setRenderData(localCharges);
+    },[]);
 
     return (
             <section className='charges-section section'>
                 <AddButton onClick={() => setFormActive(true)}>Add more charges</AddButton>
+                <SortForm saveSortParams={setSortParams}/>
+                
                 {
                     renderData.length !== 0 ? 
-                        <Table data={renderData}/> 
+                        <Table 
+                            sortParams={sortParams}
+                            renderData={renderData}
+                        /> 
                         : 
                         <MessageEmpty messageText={messageText}/>
                 }
