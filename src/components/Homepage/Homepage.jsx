@@ -14,7 +14,7 @@ function HomePage(){
             <Router basename='/home'>
 
              <TabNav>
-                <TabLink exact="true" to='/charges' activeClassName='tab--active'>Charges</TabLink>
+                <TabLink to='/charges' activeClassName='tab--active'>Charges</TabLink>
                 <TabLink to='/incomes' activeClassName='tab--active'>Incomes</TabLink>
             </TabNav>
 

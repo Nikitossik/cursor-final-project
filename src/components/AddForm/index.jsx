@@ -18,7 +18,7 @@ function AddForm({active, setActive, title, parentHandler}) {
 
         switch (name) {
             case 'total-sum':
-                setMoney(value);
+                setMoney(+value);
                 break;
             case 'description':
                 setDescription(value);
