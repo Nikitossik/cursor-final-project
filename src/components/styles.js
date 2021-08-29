@@ -255,4 +255,44 @@ export const StyledSortForm = styled.form`
   & .reverse-checkbox{
     margin-right: 10px;
   }
+
+`;
+
+export const CategoryBlock = styled.div`
+display: flex;
+flex-wrap: wrap;
+justify-content: flex - start;
+`;
+
+export const CategoryCardWrapper = styled.div`
+position: relative;
+color: white;
+align-items: center;
+width: 24%;
+max-height: 120px;
+border-radius: 7px;
+margin-right: 10px;
+margin-top: 15px;
+img {
+  width: 100%;
+  max-height: 120px;
+  border-radius: 7px;
+}
+
+  & .card-content {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  border-radius: 7px;
+  ul {
+    padding: 10px 20px;
+  }
+  li {
+    font-size: 12px;
+  }
+}
 `;
