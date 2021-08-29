@@ -127,8 +127,7 @@ export const InputGroup = styled.div`
     margin-bottom: 5px;
   }
 
-  .form-input,
-  .form-select {
+  .form-input {
     padding: 8px 15px;
     font-size: 0.8rem;
     border: 1px solid #222;
@@ -136,6 +135,18 @@ export const InputGroup = styled.div`
     width: 100%;
     max-width: 100%;
     display: block;
+  }
+
+  .form-select {
+    font-size: 0.8rem;
+    border: 1px solid #222;
+    border-radius: 4px;
+  }
+
+  .option-icon{
+    margin-right: 10px;
+    font-size: 1rem;
+    color: #23285F;
   }
 `;
 
