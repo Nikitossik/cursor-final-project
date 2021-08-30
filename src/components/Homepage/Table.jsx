@@ -1,6 +1,9 @@
 import React from 'react';
 import TableRow from "./TableRow";
-import {TableWrapper, StyledTable}  from '../styles';
+import {StyledTable}  from '../styles';
+import MessageEmpty from './MessageEmpty';
+
+import moment from 'moment';
 
 class Table extends React.Component {
 
@@ -27,38 +30,87 @@ class Table extends React.Component {
     sortByDates = (data, isReverse) => {
         const bigger = isReverse ? -1 : 1;
         const less = isReverse ? 1 : -1;
-        data.sort((a, b) => {    
-            const first = Date.parse(a.date);
-            const second = Date.parse(b.date);
-            return first > second ? bigger : first === second ? 0 : less;
+        data.sort((a, b) => {
+            return moment(a.date).isAfter(b.date) ? 
+                bigger : moment(a.date).isSame(b.date) ? 0 : less;
         });
     }
 
-    sort = (data, sortOption, isReverse) => {
-        if (sortOption === 'category' || sortOption === 'description') {
-            this.sortByText(data, isReverse, sortOption);
-        }
-        else if (sortOption === 'money') {
-            this.sortByMoney(data, isReverse);
-        }
-        else if (sortOption === 'date') {
-            this.sortByDates(data, isReverse);
+    sort = (params, data) => {
+        const {sortOption, isReverse} = params;
+        switch(sortOption){
+            case 'category':
+                this.sortByText(data, isReverse, sortOption);
+                break;
+            case 'description':
+                this.sortByText(data, isReverse, sortOption);
+                break;
+            case 'money':
+                this.sortByMoney(data, isReverse);
+                break;
+            case 'date':
+                this.sortByDates(data, isReverse);
+                break;
+            default: 
+                break;
         }
     }
 
+    filterByText = (data, text) => {
+        return data.filter(item => {
+            const regExp = new RegExp(text, 'gi');
+            return regExp.test(item.description);
+        });
+    }
+
+    filterByDateOption = (data, filterDateOption, startDate, endDate) => {
+        switch(filterDateOption){
+            case 'all-time': 
+                return data;
+            case 'month': 
+                return data.filter(item => {
+                    return moment(item.date).month() === moment().month();
+                });
+            case 'week': 
+                return data.filter(item => {
+                    return moment(item.date).isoWeek() === moment().isoWeek();
+                });
+            case 'day': 
+                return data.filter(item => {
+                    return moment().isSame(item.date);
+                });
+            case 'period': 
+                return data.filter(item => {
+                    return moment(item.date).isSameOrAfter(startDate) && 
+                    moment(item.date).isSameOrBefore(endDate);
+                });
+            default: break;
+        }
+    }
+
+    filter = (params, data) => {
+        const {filterText, filterDateOption, startDate, endDate} = params;
+        let resultData = this.filterByText(data, filterText);
+        resultData = this.filterByDateOption(resultData, filterDateOption, startDate, endDate);
+        return resultData;
+    }
+
     render() {
-        const {renderData} = this.props;
-        const {sortOption, isReverse} = this.props.sortParams;
+        const {renderData, sortParams, filterParams} = this.props;
+        const message = 'Nothing found';
 
         let resultData = [...renderData];
 
-        if (sortOption !== '') this.sort(resultData, sortOption, isReverse);
+        if (Object.values(sortParams).length !== 0) 
+            this.sort(sortParams, resultData);
+
+        if (Object.values(filterParams).length !== 0) 
+            resultData = this.filter(filterParams, resultData);
 
         const rows = resultData.map(row => <TableRow {...row} key={row.id} />);
 
-        return (
-            <TableWrapper>
-                <StyledTable>
+        const resultTable = (
+            <StyledTable>
                     <thead>
                         <tr>
                             <th>Category</th>
@@ -72,7 +124,18 @@ class Table extends React.Component {
                         {rows}
                     </tbody>
                 </StyledTable>
-            </TableWrapper>
+        );
+
+        return (
+            <>
+                {
+                resultData.length !== 0 ? 
+                    resultTable
+                    : 
+                    <MessageEmpty messageText={message}/>
+                }
+            </>
+           
         )
     };
 }
