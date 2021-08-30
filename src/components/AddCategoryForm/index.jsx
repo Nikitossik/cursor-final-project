@@ -1,8 +1,8 @@
 import { AddFormWrapper, StyledAddForm, InputGroup, Button } from '../styles';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { add as addIncomesCategories } from '../../redux/incomesCategoriesSlice';
-import { add as addChargesCategories } from '../../redux/chargesCategoriesSlice';
+import {addIncomesCategories} from '../../redux/incomesCategoriesSlice';
+import {addChargesCategories} from '../../redux/chargesCategoriesSlice';
 
 import Select, {components} from 'react-select';
 

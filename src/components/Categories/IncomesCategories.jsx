@@ -27,7 +27,7 @@ function IncomesCategories() {
   },
   {
     id: 2,
-    value: 'interest-and-income',
+    value: 'interest-income',
     label: "Interest Income",
       icon: <FontAwesomeIcon icon={faPercent} />,
     background: INTEREST,
