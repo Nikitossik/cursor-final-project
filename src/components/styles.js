@@ -28,11 +28,6 @@ export const HeaderBalance = styled.h5`
   color: rgb(255, 255, 255);
 `;
 
-export const TableWrapper = styled.div`
-  text-align: center;
-  padding: 1rem;
-`;
-
 export const StyledTable = styled.table`
   box-shadow: 1px 1px 32px -6px #000000;
   border-spacing: 0;
@@ -247,6 +242,8 @@ export const MessageContainer = styled.div`
 
 export const StyledSortForm = styled.form`
   min-width: 120px;
+  display: flex;
+  align-items: center;
 
   & .sort-label{
     font-size: 1rem;
@@ -262,9 +259,41 @@ export const StyledSortForm = styled.form`
     min-width: 120px;
     margin-right: 10px;
   }
+  
 
   & .reverse-checkbox{
     margin-right: 10px;
+  }
+`;
+
+export const StyledFilterForm = styled(StyledSortForm)`
+
+  & .filter-label{
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-right: 5px;
+  }
+
+  & .filter-select{
+    padding: 8px 15px;
+    font-size: 0.8rem;
+    border: 1px solid #222;
+    border-radius: 4px;
+    min-width: 120px;
+    margin-right: 10px;
+  }
+
+  & .filter-input {
+    padding: 8px 15px;
+    font-size: 0.8rem;
+    border: 1px solid #222;
+    border-radius: 4px;
+    min-width: 120px;
+    display: block;
+  }
+
+  & .filter-input[type='date'] {
+    display: ${props => props.isPeriod ? 'block' : 'none'};
   }
 
 `;
