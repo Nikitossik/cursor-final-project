@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState, useEffect} from "react";
 import { AddButton, CategoryBlock} from '../styles';
 import AddCategoryForm from '../AddCategoryForm';
 import CategoryCard from './CategoryCard';
@@ -73,10 +73,21 @@ function ChargesCategories() {
     icon: <FontAwesomeIcon icon={faLaptopHouse} />,
     background: HOUSEWARE,
   },
-];
-    const [formActive, setFormActive] = useState(false);
+  ];
+  
+  const [formActive, setFormActive] = useState(false);
+  // const [categories, setCategories] = useState(chargesCategories);
 
-    const chargesCategories = useSelector(selectChargesCategories);
+  // const getChargesCategoriesFromLocalStorage = () => {
+  //   const reduxState = JSON.parse(localStorage.getItem('reduxState'));
+  //   const localCategories = reduxState ? reduxState.ChargesCategories : categories;
+  //   setCategories(localCategories);
+  // }
+
+  // useEffect(() => {
+  //   getChargesCategoriesFromLocalStorage();
+  // }, []);
+
 
     return (
             <section className='charges-section section'>
@@ -84,12 +95,12 @@ function ChargesCategories() {
             <div>
                 <CategoryBlock>
                     {groupCategories.map((group) => (
-            <CategoryCard {...group} key={group.id}></CategoryCard>
+                      <CategoryCard {...group} key={group.id}></CategoryCard>
           ))}
                 </CategoryBlock>
             </div>
 
-            <AddCategoryForm active={formActive} setActive={setFormActive} title={"chargesCategories"} groupCategories={groupCategories}/>
+            <AddCategoryForm active={formActive} setActive={setFormActive} groupCategories={groupCategories}/>
             </section>
     )
 }
