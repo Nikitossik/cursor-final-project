@@ -19,16 +19,17 @@ const IconOption = (props) => {
 
 function AddCategoryForm({ active, setActive, title, groupCategories }) {
     const dispatch = useDispatch();
-    const [categoryName, setCategoryName] = useState('');
+    const [categoryLabel, setCategoryLabel] = useState('');
     const [description, setDescription] = useState('');
     const [groupCategory, setGroupCategory] = useState('');
 
     const handleInput = e => {
-        const {name, value} = e.target;
+        const eventObj = e.target ? e.target : e;
+        const {name, value} = eventObj;
 
         switch (name) {
             case 'category-name':
-                setCategoryName(value);
+                setCategoryLabel(value);
                 break;
             case 'description':
                 setDescription(value);
@@ -45,14 +46,14 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
         e.preventDefault();
         if (title === 'incomesCategories'){
             dispatch(addIncomesCategories({
-                categoryName,
+                label: categoryLabel,
                 description,
                 groupCategory,
             }));
         }
-        else if (title === 'chargeCategories'){
+        else if (title === 'chargesCategories'){
             dispatch(addChargesCategories({
-                categoryName,
+                label: categoryLabel,
                 description,
                 groupCategory
             }));
@@ -74,20 +75,13 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
             </InputGroup>
             <InputGroup>
                 <label htmlFor='group-category' className="input-group__label">Select category type</label>
-                    {/* <select onInput={handleInput} name='group-category' id='group-category' className='form-select'>
-                         {
-                         groupCategories.map((group) => (
-                        <option {...group} key={group.id}>
-                            {group.icon}
-                            {group.title}
-                        </option>
-                    ))}
-                </select> */}
                 <Select 
+                    name='group-category'
                     isSearchable 
                     isClearable 
                     className='form-select' 
                     options={groupCategories}
+                    onChange={handleInput}
                     components={{ Option: IconOption }}
                 />
             </InputGroup>
