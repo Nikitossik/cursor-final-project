@@ -1,13 +1,21 @@
 import {AddFormWrapper, StyledAddForm, InputGroup, Button} from '../styles';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addCharge} from '../../redux/chargesSlice';
 import { addIncome} from '../../redux/incomesSlice';
 import { calculate } from '../../redux/balanceSlice'
 
-function AddForm({active, setActive, title, parentHandler, getBalance}) {
+import Select, {components} from 'react-select';
+
+import { selectChargesCategories } from '../../redux/chargesCategoriesSlice';
+import { selectIncomesCategories } from '../../redux/incomesCategoriesSlice';
+
+function AddForm({active, setActive, title, setSortParams, setFilterParams}) {
 
     const dispatch = useDispatch();
+
+    const chargesCategories = useSelector(selectChargesCategories);
+    const incomesCategories = useSelector(selectIncomesCategories);
 
     const [money, setMoney] = useState(0);
     const [description, setDescription] = useState('');
@@ -45,8 +53,8 @@ function AddForm({active, setActive, title, parentHandler, getBalance}) {
                 date
             }));
             dispatch(calculate(+money));
-            parentHandler();
-            getBalance();
+            setSortParams({});
+            setFilterParams({});
         }
         else if (title === 'charge'){
             dispatch(addCharge({
@@ -56,8 +64,8 @@ function AddForm({active, setActive, title, parentHandler, getBalance}) {
                 date
             }));
             dispatch(calculate(-money));
-            parentHandler();
-            getBalance();
+            setSortParams({});
+            setFilterParams({});
         }
     }
 
@@ -84,6 +92,14 @@ function AddForm({active, setActive, title, parentHandler, getBalance}) {
                     <option value="Option 5">Option 5</option>
                     <option value="Option length">Option that has too long of a value to fit</option>
                 </select>
+                <Select 
+                    name='category'
+                    id="category"
+                    isSearchable 
+                    isClearable 
+                    className='form-select' 
+                    onChange={handleInput}
+                />
             </InputGroup>
             <InputGroup>
                 <label htmlFor='date' className="input-group__label">Select Date</label>
