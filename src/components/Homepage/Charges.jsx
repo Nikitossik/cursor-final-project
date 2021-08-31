@@ -6,25 +6,16 @@ import MessageEmpty from "./MessageEmpty";
 import SortForm from "./SortForm";
 import FilterForm from "./FilterForm";
 
-function Charges({getBalance}) {
+import {useSelector} from 'react-redux';
+import { selectCharges } from '../../redux/chargesSlice';
+
+function Charges() {
     const messageText = 'You don\'t have any charges yet';
     
-    const [renderData, setRenderData] = useState([]);
+    const renderData = useSelector(selectCharges);
     const [formActive, setFormActive] = useState(false);
     const [sortParams, setSortParams] = useState({});
     const [filterParams, setFilterParams] = useState({});
-
-    const getChargesFromLocalStorage = e => {
-        const reduxState = JSON.parse(localStorage.getItem('reduxState'));
-        const localCharges = reduxState ? reduxState.charges : [];
-        setRenderData(localCharges);
-        setSortParams({});
-        setFilterParams({});
-    }
-
-    useEffect(() => {
-        getChargesFromLocalStorage()
-    },[]);
 
     return (
             <section className='charges-section section'>
@@ -45,8 +36,8 @@ function Charges({getBalance}) {
                     active={formActive} 
                     setActive={setFormActive} 
                     title="charge" 
-                    parentHandler={getChargesFromLocalStorage}
-                    getBalance={getBalance}
+                    setSortParams={setSortParams}
+                    setFilterParams={setFilterParams}
                 />
             </section>
     )

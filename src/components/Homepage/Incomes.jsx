@@ -6,25 +6,16 @@ import MessageEmpty from "./MessageEmpty";
 import SortForm from "./SortForm";
 import FilterForm from "./FilterForm";
 
-function Incomes({getBalance}) {
+import {useSelector} from 'react-redux';
+import { selectIncomes } from '../../redux/incomesSlice';
+
+function Incomes() {
     const messageText = 'You don\'t have any incomes yet';
 
-    const [renderData, setRenderData] = useState([]);
+    const renderData= useSelector(selectIncomes);
     const [formActive, setFormActive] = useState(false);
     const [sortParams, setSortParams] = useState({});
     const [filterParams, setFilterParams] = useState({});
-
-    const getIncomesFromLocalStorage = e => {
-        const reduxState = JSON.parse(localStorage.getItem('reduxState'));
-        const localIncomes= reduxState ? reduxState.incomes : [];
-        setRenderData(localIncomes);
-        setSortParams({});
-        setFilterParams({});
-    }
-
-    useEffect(() => {
-        getIncomesFromLocalStorage()
-    }, []);
 
     return (
         <section className='incomes-section section'>
@@ -45,8 +36,8 @@ function Incomes({getBalance}) {
                 active={formActive} 
                 setActive={setFormActive} 
                 title="income"
-                parentHandler={getIncomesFromLocalStorage}
-                getBalance={getBalance}
+                setSortParams={setSortParams}
+                setFilterParams={setFilterParams}
             />
         </section>
     )
