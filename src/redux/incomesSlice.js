@@ -13,6 +13,7 @@ export const slice = createSlice({
         hydrateIncomes: (state, action) => action.payload,
         addIncome: (state, action) => {
             state.push({ ...action.payload, id: uuidv4() });
+            return state;
         }
     },
 });

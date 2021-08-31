@@ -1,40 +1,38 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 
-let initialState = {
-  incomesCategories: [
-    {
-      value: "salary",
-      label: `Salary / Pension`,
-      groupCategory: "salary-and-pension",
-    },
-    {
-      value: "allowances",
-      label: `Allowances`,
-      groupCategory: "salary-and-pension",
-    },
-    {
-      value: "bank",
-      label: `Bank Interest payments`,
-      groupCategory: "interest-income",
-    },
-    {
-      value: "dividends",
-      label: `Dividends`,
-      groupCategory: "interest-income",
-    },
-    {
-      value: "rent",
-      label: `Rental income`,
-      groupCategory: "rental-and-sale-income",
-    },
-    {
-      value: "sales",
-      label: `Sale income`,
-      groupCategory: "rental-and-sale-income",
-    },
-  ],
-};
+let initialState = [
+  {
+    value: "salary",
+    label: `Salary / Pension`,
+    groupCategory: "salary-and-pension",
+  },
+  {
+    value: "allowances",
+    label: `Allowances`,
+    groupCategory: "salary-and-pension",
+  },
+  {
+    value: "bank",
+    label: `Bank Interest payments`,
+    groupCategory: "interest-income",
+  },
+  {
+    value: "dividends",
+    label: `Dividends`,
+    groupCategory: "interest-income",
+  },
+  {
+    value: "rent",
+    label: `Rental income`,
+    groupCategory: "rental-and-sale-income",
+  },
+  {
+    value: "sales",
+    label: `Sale income`,
+    groupCategory: "rental-and-sale-income",
+  },
+];
 
 const reduxState = JSON.parse(localStorage.getItem("reduxState"));
 
@@ -46,6 +44,7 @@ export const slice = createSlice({
   reducers: {
     addIncomesCategories: (state, action) => {
       state.push({ ...action.payload, id: uuidv4() });
+      return state;
     },
   },
 });

@@ -13,6 +13,7 @@ export const slice = createSlice({
         hydrateCharges: (state, action) => action.payload,
         addCharge: (state, action) => {
             state.push({ ...action.payload, id: uuidv4() });
+            return state;
         }
     },
 });
