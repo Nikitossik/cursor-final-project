@@ -1,7 +1,11 @@
 import {HeaderWrapper, HeaderBalanceBlock, HeaderContent, HeaderBalance}  from '../styles';
-import {useState, useEffect} from 'react';
 
-const BalanceHeader = ({balance}) => {
+import {useSelector} from 'react-redux';
+import { selectBalance } from '../../redux/balanceSlice';
+
+const BalanceHeader = () => {
+
+    const balance = useSelector(selectBalance);
 
     return (
         <HeaderWrapper>
