@@ -1,11 +1,35 @@
 import { CategoryCardWrapper } from '../styles';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faEdit,
+    faTrashAlt,
+} from "@fortawesome/free-solid-svg-icons";
+import { useDispatch } from 'react-redux';
+import { deleteChargesCategories } from '../../redux/chargesCategoriesSlice';
+import { deleteIncomesCategories } from '../../redux/incomesCategoriesSlice';
 
-const CategoryCard = ({value, label, background, categories}) => {
-
+const CategoryCard = ({ title, value, label, background, categories }) => {
+    console.log(title);
+const dispatch = useDispatch();
     let categoryList = [];
     categoryList = categories.filter(category => {
         return (category.groupCategory === value)
     });
+
+    const handleClick = e => {
+        const id = e.target.value;
+        e.preventDefault();
+        if (title === 'incomes'){
+        dispatch(deleteIncomesCategories({
+            id: id,
+        }));
+    }
+        else if (title === 'charges') {
+            dispatch(deleteChargesCategories({
+                id: id,
+            }));
+        }
+    }
 
     return (
         <CategoryCardWrapper>
@@ -14,7 +38,10 @@ const CategoryCard = ({value, label, background, categories}) => {
                 <h3>{label}</h3>
                 <ul>
                     {categoryList.map((category) => (
-                        <li {...category} key={category.id}>{category.label}</li>))
+                        <div className="category-item">
+                            <li {...category} key={category.id}>{category.label}</li>
+                            <button onClick={handleClick} value={category.id}>delete</button>
+                        </div>))
                     }
                  </ul>
             </div>           
