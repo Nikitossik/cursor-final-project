@@ -305,7 +305,7 @@ export const CategoryCardWrapper = styled.div`
     li {
       font-size: 12px;
     }
-    button {
+    span {
       padding: 0;
       font-size: 11px;
     }

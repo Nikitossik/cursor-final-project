@@ -5,7 +5,12 @@ import {
     faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
-const TableRow = ({category, description, date, money}) => {
+const TableRow = ({ category, description, date, money }) => {
+    
+    const handleClick = e => {
+        console.log(e.target.id);
+    }
+
     return (
         <tr>
             <td>{category}</td>
@@ -13,12 +18,8 @@ const TableRow = ({category, description, date, money}) => {
             <td>{date}</td>
             <td>{money}</td>
             <td>
-                <button>
-                    <FontAwesomeIcon icon={faEdit} />
-                </button>
-                <button>
-                    <FontAwesomeIcon icon={faTrashAlt} />
-                </button>
+                    <span><FontAwesomeIcon id={category} icon={faEdit} onClick={handleClick}/></span>
+                    <span><FontAwesomeIcon id={category} icon={faTrashAlt} onClick={handleClick}/></span>
             </td>
         </tr>
     );
