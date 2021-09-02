@@ -40,7 +40,7 @@ const dispatch = useDispatch();
                     {categoryList.map((category) => (
                         <div className="category-item">
                             <li {...category} key={category.id}>{category.label}</li>
-                            <button onClick={handleClick} value={category.id}>delete</button>
+                            <span><FontAwesomeIcon id={category.id} icon={faTrashAlt} onClick={handleClick}/></span>
                         </div>))
                     }
                  </ul>
