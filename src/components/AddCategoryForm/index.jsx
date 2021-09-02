@@ -31,9 +31,9 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
             case 'category-name':
                 setCategoryLabel(value);
                 break;
-            case 'description':
-                setDescription(value);
-                break;
+            // case 'description':
+            //     setDescription(value);
+            //     break;
             case 'group-category':
                 setGroupCategory(value);
                 break;
@@ -47,14 +47,14 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
         if (title === 'incomesCategories'){
             dispatch(addIncomesCategories({
                 label: categoryLabel,
-                description,
+                // description,
                 groupCategory,
             }));
         }
         else if (title === 'chargesCategories'){
             dispatch(addChargesCategories({
                 label: categoryLabel,
-                description,
+               // description,
                 groupCategory
             }));
         }
@@ -69,10 +69,10 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
                 <label htmlFor='category-name' className="input-group__label"> Name</label>
                 <input onInput={handleInput} name='category-name' id='category-name' type="text" className='form-input'/>
             </InputGroup>
-            <InputGroup>
+            {/* <InputGroup>
                 <label htmlFor='description' className="input-group__label">Description</label>
                 <input onInput={handleInput} name='description' id='description' type="text" className='form-input'/>
-            </InputGroup>
+            </InputGroup> */}
             <InputGroup>
                 <label htmlFor='group-category' className="input-group__label">Select category type</label>
                 <Select 

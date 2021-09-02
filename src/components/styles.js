@@ -259,7 +259,6 @@ export const StyledSortForm = styled.form`
     min-width: 120px;
     margin-right: 10px;
   }
-  
 
   & .reverse-checkbox {
     margin-right: 10px;
@@ -294,27 +293,33 @@ export const CategoryCardWrapper = styled.div`
     left: 0px;
     width: 100%;
     height: 100%;
-    padding: 15px;
+    padding: 15px 0 15px 10px;
     border-radius: 7px;
-
+    & .category-item {
+      display: flex;
+      justify-content: space-between;
+    }
     ul {
       padding: 10px 20px;
     }
     li {
       font-size: 12px;
     }
+    button {
+      padding: 0;
+      font-size: 11px;
+    }
   }
 `;
 
 export const StyledFilterForm = styled(StyledSortForm)`
-
-  & .filter-label{
+  & .filter-label {
     font-size: 1rem;
     line-height: 1.5;
     margin-right: 5px;
   }
 
-  & .filter-select{
+  & .filter-select {
     padding: 8px 15px;
     font-size: 0.8rem;
     border: 1px solid #222;
@@ -332,7 +337,7 @@ export const StyledFilterForm = styled(StyledSortForm)`
     display: block;
   }
 
-  & .filter-input[type='date'] {
-    display: ${props => props.isPeriod ? 'block' : 'none'};
+  & .filter-input[type="date"] {
+    display: ${(props) => (props.isPeriod ? "block" : "none")};
   }
-  `;
+`;

@@ -20,7 +20,7 @@ function IncomesCategories() {
                 <CategoryBlock>
                     {
                         incomes_groups.map(
-                            group => <CategoryCard {...group} key={group.id} categories={categories}/>
+                            group => <CategoryCard {...group} key={group.id} categories={categories} title={"incomes"}/>
                         )
                     }
                 </CategoryBlock>
