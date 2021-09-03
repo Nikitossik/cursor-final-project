@@ -9,7 +9,6 @@ import { deleteChargesCategories } from '../../redux/chargesCategoriesSlice';
 import { deleteIncomesCategories } from '../../redux/incomesCategoriesSlice';
 
 const CategoryCard = ({ title, value, label, background, categories }) => {
-    console.log(title);
 const dispatch = useDispatch();
     let categoryList = [];
     categoryList = categories.filter(category => {
@@ -40,7 +39,8 @@ const dispatch = useDispatch();
                     {categoryList.map((category) => (
                         <div className="category-item">
                             <li {...category} key={category.id}>{category.label}</li>
-                            <span><FontAwesomeIcon id={category.id} icon={faTrashAlt} onClick={handleClick}/></span>
+                            <button value={category.id} onClick={handleClick}>delete</button>
+                            {/* <button value={category.id} onClick={handleClick}><FontAwesomeIcon className="icon-trash" icon={faTrashAlt} /></button> */}
                         </div>))
                     }
                  </ul>

@@ -28,6 +28,7 @@ function Incomes() {
                         sortParams={sortParams}
                         filterParams={filterParams}
                         renderData={renderData}
+                        title={"incomes"}
                     /> 
                     : 
                     <MessageEmpty messageText={messageText}/>
