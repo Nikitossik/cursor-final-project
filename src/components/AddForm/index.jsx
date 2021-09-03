@@ -69,10 +69,15 @@ function AddForm({active, setActive, title, setSortParams, setFilterParams}) {
         }
     }
 
+    const closeForm = e =>{
+        setActive(false);
+        e.preventDefault();
+    }
+
     return (
-        <AddFormWrapper className={active ? "active": "inactive"} onClick={() => setActive(false)}>
+        <AddFormWrapper className={active ? "active": "inactive"} onClick={closeForm}>
             <StyledAddForm onClick={e => e.stopPropagation()}>
-                <button className="close-btn" onClick={() => setActive(false)}>X</button>
+                <button className="close-btn" onClick={closeForm}>X</button>
                     <h1>Add new {title}</h1>   
             <InputGroup>
                 <label htmlFor='total-sum' className="input-group__label">Total</label>

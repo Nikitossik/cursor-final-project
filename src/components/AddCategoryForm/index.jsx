@@ -60,10 +60,15 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
         }
     }
 
+    const closeForm = e =>{
+        setActive(false);
+        e.preventDefault();
+    }
+
     return (
-        <AddFormWrapper className={active ? "active": "inactive"} onClick={() => setActive(false)}>
+        <AddFormWrapper className={active ? "active": "inactive"} onClick={closeForm}>
             <StyledAddForm onClick={e => e.stopPropagation()}>
-                <button className="close-btn" onClick={() => setActive(false)}>X</button>
+                <button className="close-btn" onClick={closeForm}>X</button>
                 <h1>Add new category</h1>
             <InputGroup>
                 <label htmlFor='category-name' className="input-group__label"> Name</label>
