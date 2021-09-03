@@ -299,15 +299,21 @@ export const CategoryCardWrapper = styled.div`
       display: flex;
       justify-content: space-between;
     }
+    & .icon-trash {
+      pointer-events: none;
+      user-select: none;
+    }
     ul {
       padding: 10px 20px;
     }
     li {
       font-size: 12px;
     }
-    span {
+    button {
       padding: 0;
       font-size: 11px;
+      height: 13px;
+      cursor: pointer;
     }
   }
 `;

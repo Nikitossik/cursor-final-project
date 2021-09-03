@@ -96,7 +96,7 @@ class Table extends React.Component {
     }
 
     render() {
-        const {renderData, sortParams, filterParams} = this.props;
+        const {renderData, sortParams, filterParams, title} = this.props;
         const message = 'Nothing found';
 
         let resultData = [...renderData];
@@ -107,7 +107,7 @@ class Table extends React.Component {
         if (Object.values(filterParams).length !== 0) 
             resultData = this.filter(filterParams, resultData);
 
-        const rows = resultData.map(row => <TableRow {...row} key={row.id} />);
+        const rows = resultData.map(row => <TableRow {...row} key={row.id} title={title}/>);
 
         const resultTable = (
             <StyledTable>

@@ -27,7 +27,8 @@ function Charges() {
                         <Table 
                             sortParams={sortParams}
                             filterParams={filterParams}
-                            renderData={renderData}
+                        renderData={renderData}
+                        title={"charges"}
                         /> 
                         : 
                         <MessageEmpty messageText={messageText}/>
