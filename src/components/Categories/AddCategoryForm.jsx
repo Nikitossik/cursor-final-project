@@ -3,6 +3,12 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {addIncomesCategories} from '../../redux/incomesCategoriesSlice';
 import {addChargesCategories} from '../../redux/chargesCategoriesSlice';
+import {
+    faQuestionCircle
+} from "@fortawesome/free-solid-svg-icons";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 import Select, {components} from 'react-select';
 
@@ -11,7 +17,9 @@ const {Option} = components;
 const IconOption = (props) => {
     return (
         <Option {...props}>
-            <span className='option-icon'>{props.data.icon}</span>
+            <span className='option-icon'>
+                <FontAwesomeIcon icon={props.data.icon}/>
+            </span>
             {props.label}
       </Option>
     );
@@ -20,12 +28,13 @@ const IconOption = (props) => {
 function AddCategoryForm({ active, setActive, title, groupCategories }) {
     const dispatch = useDispatch();
     const [categoryLabel, setCategoryLabel] = useState('');
+    const [categoryValue, setCategoryValue] = useState('');
+    const [categoryIcon, setCategoryIcon] = useState(faQuestionCircle);
     const [description, setDescription] = useState('');
     const [groupCategory, setGroupCategory] = useState('');
 
     const handleInput = e => {
-        const eventObj = e.target ? e.target : e;
-        const {name, value} = eventObj;
+        const {name, value} = e.target;
 
         switch (name) {
             case 'category-name':
@@ -34,12 +43,17 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
             // case 'description':
             //     setDescription(value);
             //     break;
-            case 'group-category':
-                setGroupCategory(value);
-                break;
+            
             default:
                 break;
         }
+    }
+
+    const handleSelectChange = e => {
+        const {value} = e;
+        setGroupCategory(value);
+        setCategoryValue(formatCategoryValue(categoryLabel));
+        setCategoryIcon(getCategoryIcon(groupCategories, categoryValue));
     }
 
     const handleClick = e => {
@@ -47,6 +61,8 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
         if (title === 'incomesCategories'){
             dispatch(addIncomesCategories({
                 label: categoryLabel,
+                value: categoryValue,
+                icon: categoryIcon,
                 // description,
                 groupCategory,
             }));
@@ -54,6 +70,8 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
         else if (title === 'chargesCategories'){
             dispatch(addChargesCategories({
                 label: categoryLabel,
+                value: categoryValue,
+                icon: categoryIcon,
                // description,
                 groupCategory
             }));
@@ -64,6 +82,15 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
         setActive(false);
         e.preventDefault();
     }
+
+    const formatCategoryValue = str => str ? str.toLowerCase().match(/([\wа-яА-Я]+)/gi).join('-') : str;
+    
+    const getCategoryIcon = (groups, value) => {
+        const category = groups.find(item => item.value === value)
+        return category ? category.icon : faQuestionCircle;
+    }
+
+    console.log(faQuestionCircle);
 
     return (
         <AddFormWrapper className={active ? "active": "inactive"} onClick={closeForm}>
@@ -86,7 +113,7 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
                     isClearable 
                     className='form-select' 
                     options={groupCategories}
-                    onChange={handleInput}
+                    onChange={handleSelectChange}
                     components={{ Option: IconOption }}
                 />
             </InputGroup>

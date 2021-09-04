@@ -2,10 +2,13 @@ import { useEffect } from 'react';
 import {useState} from 'react';
 import { StyledFilterForm, Button } from '../styles';
 
-function SortForm({saveFilterParams}) {
+import CategoriesSelect from './CategoriesSelect';
+
+export default function FilterForm({saveFilterParams, title}) {
 
     const [filterText, setFilterText] = useState('');
     const [filterDateOption, setFilterDateOption] = useState('all-time');
+    const [filterCategory, setFilterCategory] = useState('');
     const [isPeriod, setIsPeriod] = useState(false);
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
@@ -40,10 +43,13 @@ function SortForm({saveFilterParams}) {
         saveFilterParams({
             filterText,
             filterDateOption,
+            filterCategory,
             startDate,
             endDate
         });
     }
+
+    const handleCategorySelect = e => setFilterCategory(e ? e.value : '');
 
     return(
         <StyledFilterForm isPeriod={isPeriod}>
@@ -56,7 +62,17 @@ function SortForm({saveFilterParams}) {
                 className='filter-input'
                 onInput={handleFilterChange}
             />
-            <label htmlFor="sort" className='filter-label'>Filter by: </label>
+
+            <label htmlFor='filter-category' className='filter-label'/>
+            <CategoriesSelect 
+                id='filter-category' 
+                title={title} 
+                handler={handleCategorySelect}
+                className='filter-select'
+                value={filterCategory}
+            />
+
+            <label htmlFor="filter" className='filter-label'>Filter by: </label>
             <select 
                 onChange={handleFilterChange} 
                 className='filter-select' 
@@ -68,6 +84,7 @@ function SortForm({saveFilterParams}) {
                     <option value="week">This week</option>
                     <option value="period">Period</option>
             </select>
+
             <input
                 value={startDate} 
                 type='date' 
@@ -84,9 +101,8 @@ function SortForm({saveFilterParams}) {
                 className='filter-input'
                 onInput={handleFilterChange}
             />
+
             <Button onClick={handleFilterClick}>Filter</Button>
         </StyledFilterForm>
     );
 }
-
-export default SortForm;

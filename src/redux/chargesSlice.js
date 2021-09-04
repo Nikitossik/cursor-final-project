@@ -17,7 +17,7 @@ export const slice = createSlice({
     },
     deleteCharge: (state, action) => {
       state.splice(
-        state.findIndex((item) => item.id == action.payload.id),
+        state.findIndex((item) => item.id === action.payload.id),
         1
       );
       return state;

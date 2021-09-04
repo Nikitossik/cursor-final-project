@@ -19,13 +19,13 @@ const dispatch = useDispatch();
         const id = e.target.value;
         e.preventDefault();
         if (title === 'incomes'){
-        dispatch(deleteIncomesCategories({
-            id: id,
-        }));
-    }
+            dispatch(deleteIncomesCategories({
+            id
+            }));
+        }
         else if (title === 'charges') {
             dispatch(deleteChargesCategories({
-                id: id,
+              id
             }));
         }
     }
@@ -37,10 +37,14 @@ const dispatch = useDispatch();
                 <h3>{label}</h3>
                 <ul>
                     {categoryList.map((category) => (
-                        <div className="category-item">
-                            <li {...category} key={category.id}>{category.label}</li>
-                            <button value={category.id} onClick={handleClick}>delete</button>
-                            {/* <button value={category.id} onClick={handleClick}><FontAwesomeIcon className="icon-trash" icon={faTrashAlt} /></button> */}
+                        <div className="category-item" key={category.id}>
+                            <li {...category}>{category.label}</li>
+                            <button 
+                                value={category.id} 
+                                onClick={handleClick}
+                            >
+                                <FontAwesomeIcon className="icon-trash" icon={faTrashAlt} />
+                            </button>
                         </div>))
                     }
                  </ul>

@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import { StyledSortForm, Button } from '../styles';
 
-function SortForm({saveSortParams}) {
+export default function SortForm({saveSortParams}) {
 
     const [sortOption, setSortOption] = useState('money');
     const [isReverse, setIsReverse] = useState(false);
@@ -56,5 +56,3 @@ function SortForm({saveSortParams}) {
         </StyledSortForm>
     );
 }
-
-export default SortForm;

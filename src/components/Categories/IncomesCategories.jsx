@@ -1,11 +1,11 @@
 import React, { useState, useEffect} from "react";
 import { AddButton, CategoryBlock} from '../styles';
-import AddCategoryForm from '../AddCategoryForm';
+import AddCategoryForm from './AddCategoryForm';
 import CategoryCard from './CategoryCard';
 import { useSelector } from 'react-redux';
 import { selectIncomesCategories } from '../../redux/incomesCategoriesSlice';
 
-import { incomes_groups } from './groupCategories';
+import { incomes_groups } from '../groupCategories';
 
 function IncomesCategories() {
   

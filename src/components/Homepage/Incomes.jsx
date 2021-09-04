@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from "react";
 import Table from './Table';
 import { AddButton } from '../styles';
-import AddForm from '../AddForm';
+import AddForm from './AddForm';
 import MessageEmpty from "./MessageEmpty";
 import SortForm from "./SortForm";
 import FilterForm from "./FilterForm";
@@ -21,14 +21,14 @@ function Incomes() {
         <section className='incomes-section section'>
            <AddButton onClick={() => setFormActive(true)}>Add more incomes</AddButton>
            <SortForm saveSortParams={setSortParams}/>
-           <FilterForm saveFilterParams={setFilterParams}/>
+           <FilterForm title='income' saveFilterParams={setFilterParams}/>
                 {
                     renderData.length !== 0 ? 
                     <Table 
                         sortParams={sortParams}
                         filterParams={filterParams}
                         renderData={renderData}
-                        title={"incomes"}
+                        title="incomes"
                     /> 
                     : 
                     <MessageEmpty messageText={messageText}/>

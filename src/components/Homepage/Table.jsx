@@ -63,6 +63,12 @@ class Table extends React.Component {
         });
     }
 
+    filterByCategory = (data, category) => {
+        return data.filter(item => {
+            return category === item.categoryValue
+        });
+    }
+
     filterByDateOption = (data, filterDateOption, startDate, endDate) => {
         switch(filterDateOption){
             case 'all-time': 
@@ -89,8 +95,9 @@ class Table extends React.Component {
     }
 
     filter = (params, data) => {
-        const {filterText, filterDateOption, startDate, endDate} = params;
+        const {filterText, filterDateOption, filterCategory, startDate, endDate} = params;
         let resultData = this.filterByText(data, filterText);
+        resultData = this.filterByCategory(resultData, filterCategory);
         resultData = this.filterByDateOption(resultData, filterDateOption, startDate, endDate);
         return resultData;
     }

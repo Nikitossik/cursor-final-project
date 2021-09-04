@@ -1,25 +1,20 @@
 import {AddFormWrapper, StyledAddForm, InputGroup, Button} from '../styles';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addCharge} from '../../redux/chargesSlice';
 import { addIncome} from '../../redux/incomesSlice';
-import { calculate } from '../../redux/balanceSlice'
+import { calculate } from '../../redux/balanceSlice';
 
-import Select, {components} from 'react-select';
-
-import { selectChargesCategories } from '../../redux/chargesCategoriesSlice';
-import { selectIncomesCategories } from '../../redux/incomesCategoriesSlice';
+import CategoriesSelect from './CategoriesSelect';
 
 function AddForm({active, setActive, title, setSortParams, setFilterParams}) {
 
     const dispatch = useDispatch();
 
-    const chargesCategories = useSelector(selectChargesCategories);
-    const incomesCategories = useSelector(selectIncomesCategories);
-
     const [money, setMoney] = useState(0);
     const [description, setDescription] = useState('');
-    const [category, setCategory] = useState('');
+    const [categoryValue, setCategoryValue] = useState('');
+    const [categoryLabel, setCategoryLabel] = useState('');
     const [date, setDate] = useState('');
 
     const handleInput = e => {
@@ -32,9 +27,6 @@ function AddForm({active, setActive, title, setSortParams, setFilterParams}) {
             case 'description':
                 setDescription(value);
                 break;
-            case 'category':
-                setCategory(value);
-                break;
             case 'date':
                 setDate(value);
                 break;       
@@ -43,13 +35,19 @@ function AddForm({active, setActive, title, setSortParams, setFilterParams}) {
         }
     }
 
+    const handleSelectChange = e => {
+        setCategoryLabel(e.label);
+        setCategoryValue(e.value);
+    }
+
     const handleClick = e => {
         e.preventDefault();
         if (title === 'income'){
             dispatch(addIncome({
                 money, 
                 description,
-                category,
+                category: categoryLabel,
+                categoryValue,
                 date
             }));
             dispatch(calculate(+money));
@@ -60,7 +58,8 @@ function AddForm({active, setActive, title, setSortParams, setFilterParams}) {
             dispatch(addCharge({
                 money, 
                 description,
-                category,
+                category: categoryLabel,
+                categoryValue,
                 date
             }));
             dispatch(calculate(-money));
@@ -89,22 +88,7 @@ function AddForm({active, setActive, title, setSortParams, setFilterParams}) {
             </InputGroup>
             <InputGroup>
                 <label htmlFor='category' className="input-group__label">Select category</label>
-                <select onChange={handleInput} name='category' id='category' className='form-select'>
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                    <option value="Option 4">Option 4</option>
-                    <option value="Option 5">Option 5</option>
-                    <option value="Option length">Option that has too long of a value to fit</option>
-                </select>
-                <Select 
-                    name='category'
-                    id="category"
-                    isSearchable 
-                    isClearable 
-                    className='form-select' 
-                    onChange={handleInput}
-                />
+                <CategoriesSelect title={title} handler={handleSelectChange}/>
             </InputGroup>
             <InputGroup>
                 <label htmlFor='date' className="input-group__label">Select Date</label>

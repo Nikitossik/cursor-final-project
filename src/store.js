@@ -12,6 +12,9 @@ const store = configureStore({
     incomesCategories: incomesCategoriesReducer,
     balance: balanceReducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    serializableCheck: false
+  })
 });
 
 store.subscribe(() => {

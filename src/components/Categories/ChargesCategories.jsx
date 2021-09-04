@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { AddButton, CategoryBlock } from '../styles';
-import AddCategoryForm from '../AddCategoryForm';
+import AddCategoryForm from './AddCategoryForm';
 import CategoryCard from './CategoryCard';
 import { useSelector } from 'react-redux';
 import { selectChargesCategories } from '../../redux/chargesCategoriesSlice';
-import { charges_groups } from "./groupCategories";
+import { charges_groups } from "../groupCategories";
 
 function ChargesCategories() {
 

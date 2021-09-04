@@ -1,42 +1,56 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCreditCard,
+  faPercent,
+  faPiggyBank,
+  faGift
+} from "@fortawesome/free-solid-svg-icons";
+
 let initialState = [
   {
-    id: 0,
-    value: "salary",
+    id: uuidv4(),
+    value: "salary-pension",
     label: `Salary / Pension`,
-    groupCategory: "salary-and-pension",
+    groupCategory: "salary-pension",
+    icon: faCreditCard,
   },
   {
-    id: 1,
+    id: uuidv4(),
     value: "allowances",
     label: `Allowances`,
-    groupCategory: "salary-and-pension",
+    groupCategory: "salary-pension",
+    icon: faCreditCard,
   },
   {
-    id: 2,
-    value: "bank",
+    id: uuidv4(),
+    value: "bank-interest-payments",
     label: `Bank Interest payments`,
     groupCategory: "interest-income",
+    icon: faPercent,
   },
   {
-    id: 3,
+    id: uuidv4(),
     value: "dividends",
     label: `Dividends`,
     groupCategory: "interest-income",
+    icon: faPercent,
   },
   {
-    id: 4,
-    value: "rent",
+    id: uuidv4(),
+    value: "rental-income",
     label: `Rental income`,
-    groupCategory: "rental-and-sale-income",
+    groupCategory: "rental-sale-income",
+    icon: faPiggyBank,
   },
   {
-    id: 5,
-    value: "sales",
+    id: uuidv4(),
+    value: "sale-income",
     label: `Sale income`,
-    groupCategory: "rental-and-sale-income",
+    groupCategory: "rental-sale-income",
+    icon: faGift,
   },
 ];
 
@@ -53,10 +67,7 @@ export const slice = createSlice({
       return state;
     },
     deleteIncomesCategories: (state, action) => {
-      state.splice(
-        state.findIndex((item) => item.id === Number(action.payload.id)),
-        1
-      );
+      state.splice(state.findIndex(item => item.id === action.payload.id), 1);
       return state;
     },
   },

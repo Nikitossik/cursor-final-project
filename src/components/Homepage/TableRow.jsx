@@ -32,9 +32,13 @@ const TableRow = ({ category, description, date, money, title, id }) => {
             <td>{date}</td>
             <td>{money}</td>
             <td>
-                {/* <span><FontAwesomeIcon id={id} icon={faEdit} onClick={handleClick}/></span> */}
-                <button value={id} onClick={handleClick}>delete</button>
-        {/* <button  onClick={handleClick} value={id} ><FontAwesomeIcon className="icon-trash" icon={faTrashAlt}/></button> */}
+                <button 
+                    onClick={handleClick} 
+                    value={id}
+                    className='close'
+                >
+                    <FontAwesomeIcon className="icon-trash" icon={faTrashAlt}/>
+                </button>
             </td>
         </tr>
     );

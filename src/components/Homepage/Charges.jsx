@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from "react";
 import Table from './Table';
 import { AddButton} from '../styles';
-import AddForm from '../AddForm';
+import AddForm from './AddForm';
 import MessageEmpty from "./MessageEmpty";
 import SortForm from "./SortForm";
 import FilterForm from "./FilterForm";
@@ -12,7 +12,8 @@ import { selectCharges } from '../../redux/chargesSlice';
 function Charges() {
     const messageText = 'You don\'t have any charges yet';
     
-    const renderData = useSelector(selectCharges);
+    const renderData = useSelector(selectCharges); 
+
     const [formActive, setFormActive] = useState(false);
     const [sortParams, setSortParams] = useState({});
     const [filterParams, setFilterParams] = useState({});
@@ -21,14 +22,14 @@ function Charges() {
             <section className='charges-section section'>
                 <AddButton onClick={() => setFormActive(true)}>Add more charges</AddButton>
                 <SortForm saveSortParams={setSortParams}/>
-                <FilterForm saveFilterParams={setFilterParams}/>
+                <FilterForm title='charge' saveFilterParams={setFilterParams}/>
                 {
                     renderData.length !== 0 ? 
                         <Table 
                             sortParams={sortParams}
                             filterParams={filterParams}
-                        renderData={renderData}
-                        title={"charges"}
+                            renderData={renderData}
+                            title="charge"
                         /> 
                         : 
                         <MessageEmpty messageText={messageText}/>
