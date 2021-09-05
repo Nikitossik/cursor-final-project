@@ -1,5 +1,5 @@
 import { AddFormWrapper, StyledAddForm, InputGroup, Button } from '../styles';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import {addIncomesCategories} from '../../redux/incomesCategoriesSlice';
 import {addChargesCategories} from '../../redux/chargesCategoriesSlice';
@@ -49,11 +49,17 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
         }
     }
 
+    useEffect(() => {
+        setCategoryValue(formatCategoryValue(categoryLabel));
+    }, [categoryLabel]);
+
+    useEffect(() => {   
+        setCategoryIcon(getCategoryIcon(groupCategories, groupCategory));
+    }, [groupCategory]);
+
     const handleSelectChange = e => {
         const {value} = e;
         setGroupCategory(value);
-        setCategoryValue(formatCategoryValue(categoryLabel));
-        setCategoryIcon(getCategoryIcon(groupCategories, categoryValue));
     }
 
     const handleClick = e => {
@@ -86,11 +92,9 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
     const formatCategoryValue = str => str ? str.toLowerCase().match(/([\wа-яА-Я]+)/gi).join('-') : str;
     
     const getCategoryIcon = (groups, value) => {
-        const category = groups.find(item => item.value === value)
-        return category ? category.icon : faQuestionCircle;
+        const group = groups.find(group => group.value === value);
+        return group ? group.icon : faQuestionCircle;
     }
-
-    console.log(faQuestionCircle);
 
     return (
         <AddFormWrapper className={active ? "active": "inactive"} onClick={closeForm}>

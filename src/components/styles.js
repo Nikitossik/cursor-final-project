@@ -96,7 +96,7 @@ export const StyledAddForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 350px;
+  min-width: 350px;
   box-shadow: 1px 1px 2px #000;
   background-color: rgb(238, 238, 238);
   padding: 15px;

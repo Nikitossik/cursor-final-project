@@ -1,6 +1,5 @@
 import React from 'react';
 import { VictoryChart, VictoryZoomContainer, VictoryLine, VictoryBrushContainer, VictoryAxis } from 'victory';
-import charges from '../data';
 import BalanceHeader from '../BalanceHeader';
 
 class Charts extends React.Component {
@@ -61,7 +60,7 @@ class Charts extends React.Component {
         };
         return (
             <section  className='charts-page page'>
-                <BalanceHeader balance={balance}/>
+                {/* <BalanceHeader balance={balance}/>
                 <button
                     onClick={this.showCharges.bind(this)}
                     style={chargesButtonStyle}
@@ -110,7 +109,7 @@ class Charts extends React.Component {
                             { x: '26.08', y: 4 }
                         ]}
                     />
-                </VictoryChart>
+                </VictoryChart> */}
             </section>
         )
     }
