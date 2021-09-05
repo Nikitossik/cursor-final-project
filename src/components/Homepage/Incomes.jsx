@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import { useState} from "react";
 import Table from './Table';
 import { AddButton } from '../styles';
 import AddForm from './AddForm';
@@ -22,17 +22,17 @@ function Incomes() {
            <AddButton onClick={() => setFormActive(true)}>Add more incomes</AddButton>
            <SortForm saveSortParams={setSortParams}/>
            <FilterForm title='income' saveFilterParams={setFilterParams}/>
-                {
-                    renderData.length !== 0 ? 
-                    <Table 
-                        sortParams={sortParams}
-                        filterParams={filterParams}
-                        renderData={renderData}
-                        title="incomes"
-                    /> 
-                    : 
-                    <MessageEmpty messageText={messageText}/>
-                }
+            {
+                renderData.length !== 0 ? 
+                <Table 
+                    sortParams={sortParams}
+                    filterParams={filterParams}
+                    renderData={renderData}
+                    title="income"
+                /> 
+                : 
+                <MessageEmpty messageText={messageText}/>
+            }
             <AddForm 
                 active={formActive} 
                 setActive={setFormActive} 

@@ -18,7 +18,7 @@ const IconOption = (props) => {
     );
 }
 
-export default function CategoriesSelect({title, className, handler}) {
+export default function CategoriesSelect({title, className, handler, isMulti}) {
     const chargesCategories = useSelector(selectChargesCategories);
     const incomesCategories = useSelector(selectIncomesCategories);
     const selectCategories = title === 'charge' ? chargesCategories : incomesCategories;
@@ -27,6 +27,7 @@ export default function CategoriesSelect({title, className, handler}) {
         <Select 
             name='category'
             id="category"
+            isMulti={isMulti}
             isSearchable 
             isClearable 
             className={className}  

@@ -13,14 +13,14 @@ const TableRow = ({ category, description, date, money, title, id }) => {
     const handleClick = e => {
         const id = e.target.value;
         e.preventDefault();
-        if (title === 'incomes'){
-        dispatch(deleteIncome({
-            id: id,
-        }));
-    }
-        else if (title === 'charges') {
+        if (title === 'income'){
+            dispatch(deleteIncome({
+                id
+            }));
+        }
+        else if (title === 'charge') {
             dispatch(deleteCharge({
-                id: id,
+                id
             }));
         }
     }

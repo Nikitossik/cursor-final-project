@@ -39,5 +39,11 @@
   min-width: 30px;
   background-color: #E42D2D;
   color: #fff;
+  cursor: pointer;
   font-size: 1.2rem;
+}
+
+.close svg{ 
+  user-select: none;
+  pointer-events: none;
 }

@@ -63,9 +63,9 @@ class Table extends React.Component {
         });
     }
 
-    filterByCategory = (data, category) => {
+    filterByCategories = (data, categories) => {
         return data.filter(item => {
-            return category === item.categoryValue
+            return categories.some(category => category === item.categoryValue);
         });
     }
 
@@ -95,10 +95,10 @@ class Table extends React.Component {
     }
 
     filter = (params, data) => {
-        const {filterText, filterDateOption, filterCategory, startDate, endDate} = params;
+        const {filterText, filterDateOption, filterCategories, startDate, endDate} = params;
         let resultData = this.filterByText(data, filterText);
-        resultData = this.filterByCategory(resultData, filterCategory);
-        resultData = this.filterByDateOption(resultData, filterDateOption, startDate, endDate);
+        if (filterCategories.length !== 0) resultData = this.filterByCategories(resultData, filterCategories);
+        if (filterDateOption) resultData = this.filterByDateOption(resultData, filterDateOption, startDate, endDate);
         return resultData;
     }
 

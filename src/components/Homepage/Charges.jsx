@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import { useState} from "react";
 import Table from './Table';
 import { AddButton} from '../styles';
 import AddForm from './AddForm';

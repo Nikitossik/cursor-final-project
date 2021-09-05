@@ -8,7 +8,7 @@ export default function FilterForm({saveFilterParams, title}) {
 
     const [filterText, setFilterText] = useState('');
     const [filterDateOption, setFilterDateOption] = useState('all-time');
-    const [filterCategory, setFilterCategory] = useState('');
+    const [filterCategories, setFilterCategories] = useState([]);
     const [isPeriod, setIsPeriod] = useState(false);
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
@@ -43,17 +43,20 @@ export default function FilterForm({saveFilterParams, title}) {
         saveFilterParams({
             filterText,
             filterDateOption,
-            filterCategory,
+            filterCategories,
             startDate,
             endDate
         });
     }
 
-    const handleCategorySelect = e => setFilterCategory(e ? e.value : '');
+    const handleCategorySelect = e => {
+        const categories = e.map(category => category.value);
+        setFilterCategories(categories);
+    }
 
     return(
         <StyledFilterForm isPeriod={isPeriod}>
-            <label htmFor="filter-text" className='filter-label'/>
+            <label htmlFor="filter-text" className='filter-label'/>
             <input 
                 value={filterText} 
                 type='text' 
@@ -66,10 +69,11 @@ export default function FilterForm({saveFilterParams, title}) {
             <label htmlFor='filter-category' className='filter-label'/>
             <CategoriesSelect 
                 id='filter-category' 
+                isMulti={true}
                 title={title} 
                 handler={handleCategorySelect}
                 className='filter-select'
-                value={filterCategory}
+                value={filterCategories}
             />
 
             <label htmlFor="filter" className='filter-label'>Filter by: </label>
