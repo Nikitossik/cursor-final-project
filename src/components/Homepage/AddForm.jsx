@@ -1,13 +1,22 @@
-import {AddFormWrapper, StyledAddForm, InputGroup, Button} from '../styles';
-import { useState } from 'react';
+import {AddFormWrapper, StyledAddForm, FormGroup, FormLabel, FormInput, FormTitle, FormButton} from '../styles';
+import { useState, forwardRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { addCharge} from '../../redux/chargesSlice';
 import { addIncome} from '../../redux/incomesSlice';
 import { calculate } from '../../redux/balanceSlice';
 
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+
+import moment from 'moment';
+
 import CategoriesSelect from './CategoriesSelect';
 
 function AddForm({active, setActive, title, setSortParams, setFilterParams}) {
+
+    const DateInput = forwardRef(({ value, onClick }, ref) => (
+        <FormInput className="example-custom-input" onClick={onClick} ref={ref} defaultValue={value}/>
+    ));
 
     const dispatch = useDispatch();
 
@@ -15,7 +24,8 @@ function AddForm({active, setActive, title, setSortParams, setFilterParams}) {
     const [description, setDescription] = useState('');
     const [categoryValue, setCategoryValue] = useState('');
     const [categoryLabel, setCategoryLabel] = useState('');
-    const [date, setDate] = useState('');
+    const [renderDate, setRenderDate] = useState(new Date());
+    const [date, setDate] = useState(moment().format('dd/MM/yyyy'));
 
     const handleInput = e => {
         const {name, value} = e.target;
@@ -26,13 +36,15 @@ function AddForm({active, setActive, title, setSortParams, setFilterParams}) {
                 break;
             case 'description':
                 setDescription(value);
-                break;
-            case 'date':
-                setDate(value);
-                break;       
+                break;   
             default:
                 break;
         }
+    }
+
+    const handleDateChange = date => {
+        setRenderDate(date);
+        setDate(moment(date).format('dd/MM/yyyy'));
     }
 
     const handleSelectChange = e => {
@@ -77,24 +89,31 @@ function AddForm({active, setActive, title, setSortParams, setFilterParams}) {
         <AddFormWrapper className={active ? "active": "inactive"} onClick={closeForm}>
             <StyledAddForm onClick={e => e.stopPropagation()}>
                 <button className="close-btn" onClick={closeForm}>X</button>
-                    <h1>Add new {title}</h1>   
-            <InputGroup>
-                <label htmlFor='total-sum' className="input-group__label">Total</label>
-                <input onInput={handleInput} name='total-sum' id='total-sum' type="number" min='0' className='form-input'/>
-            </InputGroup>
-            <InputGroup>
-                <label htmlFor='description' className="input-group__label">Description</label>
-                <input onInput={handleInput} name='description' id='description' type="text" className='form-input'/>
-            </InputGroup>
-            <InputGroup>
-                <label htmlFor='category' className="input-group__label">Select category</label>
+                    <FormTitle>Add new {title}</FormTitle>   
+            <FormGroup className='fullwidth'>
+                <FormLabel htmlFor='total-sum'>Total</FormLabel>
+                <FormInput onInput={handleInput} name='total-sum' id='total-sum' type="number" min='0'/>
+            </FormGroup>
+            <FormGroup className='fullwidth'>
+                <FormLabel htmlFor='description'>Description</FormLabel>
+                <FormInput onInput={handleInput} name='description' id='description' type="text"/>
+            </FormGroup>
+            <FormGroup className='fullwidth'>
+                <FormLabel htmlFor='category'>Select category</FormLabel>
                 <CategoriesSelect title={title} handler={handleSelectChange}/>
-            </InputGroup>
-            <InputGroup>
-                <label htmlFor='date' className="input-group__label">Select Date</label>
-                <input onInput={handleInput} name='date' id='date' type="date" className='form-input'/>
-            </InputGroup>
-            <Button onClick={handleClick}>Add new {title}</Button>
+            </FormGroup>
+            <FormGroup className='fullwidth'>
+                <FormLabel htmlFor='date'>Select Date</FormLabel>
+                <DatePicker 
+                    onChange={handleDateChange} 
+                    selected={renderDate}
+                    name='date' 
+                    id='date'
+                    customInput={<DateInput/>}
+                    dateFormat='dd/MM/yyyy'
+                />
+            </FormGroup>
+            <FormButton onClick={handleClick}>New {title}</FormButton>
         </StyledAddForm>
         </AddFormWrapper>
     );

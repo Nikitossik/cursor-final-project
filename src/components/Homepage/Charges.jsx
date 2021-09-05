@@ -1,6 +1,6 @@
 import { useState} from "react";
 import Table from './Table';
-import { AddButton} from '../styles';
+import { AddButton, SectionHeader} from '../styles';
 import AddForm from './AddForm';
 import MessageEmpty from "./MessageEmpty";
 import SortForm from "./SortForm";
@@ -20,9 +20,16 @@ function Charges() {
 
     return (
             <section className='charges-section section'>
-                <AddButton onClick={() => setFormActive(true)}>Add more charges</AddButton>
-                <SortForm saveSortParams={setSortParams}/>
-                <FilterForm title='charge' saveFilterParams={setFilterParams}/>
+                <SectionHeader>
+                    <div className='forms-block'>
+                        <FilterForm title='charge' saveFilterParams={setFilterParams}/>
+                        <SortForm saveSortParams={setSortParams}/>
+                    </div>
+                    <div className='button-block'>
+                        <AddButton onClick={() => setFormActive(true)}>Add more</AddButton>
+                    </div>
+                </SectionHeader>
+                
                 {
                     renderData.length !== 0 ? 
                         <Table 

@@ -14,7 +14,7 @@ function ChargesCategories() {
 
   return (
     <section className='charges-section section'>
-      <AddButton onClick={() => setFormActive(true)}>Add more charges categories</AddButton>
+      <AddButton onClick={() => setFormActive(true)}>Add more</AddButton>
       <div>
         <CategoryBlock>
           {

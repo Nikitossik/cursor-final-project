@@ -1,52 +1,46 @@
-import { useEffect } from 'react';
-import {useState} from 'react';
-import { StyledFilterForm, Button } from '../styles';
+import {useState, forwardRef, useEffect} from 'react';
+import { StyledForm,FormGroup, FormInput, FormSelect } from '../styles';
+
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 import CategoriesSelect from './CategoriesSelect';
+
+const filterDateOptions = [
+    {
+        label: 'All time',
+        value: 'all-time'
+    },
+    {
+        label: 'Month',
+        value: 'month'
+    },
+    {
+        label: 'Week',
+        value: 'week'
+    },
+    {
+        label: 'Period',
+        value: 'period'
+    }
+];
 
 export default function FilterForm({saveFilterParams, title}) {
 
     const [filterText, setFilterText] = useState('');
-    const [filterDateOption, setFilterDateOption] = useState('all-time');
+    const [filterDateOption, setFilterDateOption] = useState(filterDateOptions[0]);
     const [filterCategories, setFilterCategories] = useState([]);
     const [isPeriod, setIsPeriod] = useState(false);
-    const [startDate, setStartDate] = useState('');
-    const [endDate, setEndDate] = useState('');
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
+
+    const DateInput = forwardRef(({ value, onClick }, ref) => (
+        <FormInput className="example-custom-input" onClick={onClick} ref={ref} defaultValue={value}/>
+    ));
     
-    const handleFilterChange = e => {
-        const {name, value, checked} = e.target;
-
-        switch (name) {
-            case 'filter-text':
-                setFilterText(value);
-                break;
-            case 'filter-date-option':
-                setFilterDateOption(value);
-                break;
-            case 'start-date': 
-                setStartDate(value);
-                break;
-            case 'end-date': 
-                setEndDate(value);
-                break;
-            default:
-                break;
-        }
-    }
-
-    useEffect(()=> {
-        setIsPeriod(filterDateOption === 'period');
-    }, [filterDateOption]);
-
-    const handleFilterClick = e => {
-        e.preventDefault();
-        saveFilterParams({
-            filterText,
-            filterDateOption,
-            filterCategories,
-            startDate,
-            endDate
-        });
+    const handleFilterTextChange = e => {
+        const {value} = e.target;
+        setFilterText(value);
     }
 
     const handleCategorySelect = e => {
@@ -54,59 +48,72 @@ export default function FilterForm({saveFilterParams, title}) {
         setFilterCategories(categories);
     }
 
+    const handleFilterDateOptionSelect = e => setFilterDateOption(e);
+
+    const handlePeriodChange = dates => {
+        const [start, end] = dates;
+        setStartDate(start);
+        setEndDate(end);
+    }
+
+    useEffect(()=> {
+        setIsPeriod(filterDateOption.value === 'period');
+    }, [filterDateOption]);
+
+    useEffect(() => {
+        saveFilterParams({
+            filterText,
+            filterDateOption,
+            filterCategories,
+            startDate,
+            endDate
+        });
+    }, [filterText, filterDateOption, filterCategories, startDate, endDate]); 
+
     return(
-        <StyledFilterForm isPeriod={isPeriod}>
-            <label htmlFor="filter-text" className='filter-label'/>
-            <input 
-                value={filterText} 
-                type='text' 
-                name='filter-text' 
-                id='filter-text' 
-                className='filter-input'
-                onInput={handleFilterChange}
-            />
-
-            <label htmlFor='filter-category' className='filter-label'/>
-            <CategoriesSelect 
-                id='filter-category' 
-                isMulti={true}
-                title={title} 
-                handler={handleCategorySelect}
-                className='filter-select'
-                value={filterCategories}
-            />
-
-            <label htmlFor="filter" className='filter-label'>Filter by: </label>
-            <select 
-                onChange={handleFilterChange} 
-                className='filter-select' 
-                name="filter-date-option" 
-                id="filter"
-                value={filterDateOption}>
-                    <option value="all-time">All time</option>
-                    <option value="month">This month</option>
-                    <option value="week">This week</option>
-                    <option value="period">Period</option>
-            </select>
-
-            <input
-                value={startDate} 
-                type='date' 
-                name='start-date' 
-                id='filter-start-date' 
-                className='filter-input'
-                onInput={handleFilterChange}
-            />
-            <input
-                value={endDate} 
-                type='date' 
-                name='end-date' 
-                id='filter-end-date' 
-                className='filter-input'
-                onInput={handleFilterChange}
-            />
-
-            <Button onClick={handleFilterClick}>Filter</Button>
-        </StyledFilterForm>
+        <StyledForm>
+            <FormGroup>
+                <FormInput 
+                    value={filterText}
+                    type='text' 
+                    name='filter-text' 
+                    id='filter-text' 
+                    onChange={handleFilterTextChange}
+                    placeholder='Search for...'
+                />
+            </FormGroup>
+            <FormGroup>
+                <CategoriesSelect 
+                    id='filter-category' 
+                    isMulti={true}
+                    title={title} 
+                    handler={handleCategorySelect}
+                    defaultValue={filterCategories}
+                    value={filterCategories}
+                />
+            </FormGroup>
+            <FormGroup>
+                <FormSelect 
+                    onChange={handleFilterDateOptionSelect} 
+                    id="filter"
+                    defaultValue={filterDateOption}
+                    value={filterDateOption}
+                    options={filterDateOptions}
+                />
+            </FormGroup>
+            <FormGroup className='period' isPeriod={isPeriod}>
+                <DatePicker
+                    selected={startDate}
+                    startDate={startDate}
+                    endDate={endDate}
+                    name='start-date' 
+                    id='filter-start-date' 
+                    onChange={handlePeriodChange}
+                    customInput={<DateInput/>}
+                    selectsRange
+                    dateFormat='dd/MM/yyyy'
+                />
+            </FormGroup>
+        </StyledForm>
     );
 }

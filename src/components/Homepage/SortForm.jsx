@@ -1,5 +1,5 @@
-import {useState} from 'react';
-import { StyledSortForm, Button } from '../styles';
+import {useState, useEffect} from 'react';
+import { StyledForm, FormInput, FormLabel, SortLabel, FormGroup, FormToggler} from '../styles';
 
 export default function SortForm({saveSortParams}) {
 
@@ -21,38 +21,41 @@ export default function SortForm({saveSortParams}) {
         }
     }
 
-    const handleSortClick = e => {
-        e.preventDefault();
+    useEffect(() => {
         saveSortParams({
             sortOption,
             isReverse
         });
-    }
+    }, [sortOption, isReverse]);
 
     return(
-        <StyledSortForm>
-            <label htmlFor="sort" className='sort-label'>Sort by: </label>
-            <select 
-                onChange={handleSortChange} 
-                className='sort-select' 
-                name="sort-option" 
-                id="sort"
-                value={sortOption}>
-                    <option value="money">Money</option>
-                    <option value="description">Description</option>
-                    <option value="date">Date</option>
-                    <option value="category">Category</option>
-            </select>
-            <label htmlFor="reverse" className='sort-label'>Reverse</label>
-            <input
-                type="checkbox" 
-                name='reverse' 
-                id='reverse'
-                checked={isReverse}
-                onChange={handleSortChange}
-                value={isReverse}
-            />
-            <Button onClick={handleSortClick}>Sort</Button>
-        </StyledSortForm>
+        <StyledForm>
+            <FormGroup>
+                <FormLabel htmlFor="sort">Sort by: </FormLabel>
+                
+                <FormInput onChange={handleSortChange} type="radio" className='sort-radio' name='sort-option' id='money' value='money'/>
+                <SortLabel htmlFor="money">Money</SortLabel>
+
+                <FormInput onChange={handleSortChange} type="radio" className='sort-radio' name='sort-option' id='description' value='description'/>
+                <SortLabel htmlFor="description">Description</SortLabel>
+                
+                <FormInput onChange={handleSortChange} type="radio" className='sort-radio' name='sort-option' id='date' value='date'/>
+                <SortLabel htmlFor="date">Date</SortLabel>
+                
+                <FormInput onChange={handleSortChange} type="radio" className='sort-radio' name='sort-option' id='sort-category' value='category'/>
+                <SortLabel htmlFor="sort-category">Category</SortLabel>
+            </FormGroup>
+            <FormGroup>
+                <FormLabel htmlFor="reverse">Reverse</FormLabel>
+                <FormToggler
+                    type="checkbox" 
+                    name='reverse' 
+                    id='reverse'
+                    checked={isReverse}
+                    onChange={handleSortChange}
+                    value={isReverse}
+                />
+            </FormGroup>
+        </StyledForm>
     );
 }

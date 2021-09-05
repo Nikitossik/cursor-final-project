@@ -1,4 +1,4 @@
-import { AddFormWrapper, StyledAddForm, InputGroup, Button } from '../styles';
+import {AddFormWrapper, StyledAddForm, FormGroup, FormLabel, FormInput, FormTitle, FormSelect, FormButton} from '../styles';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import {addIncomesCategories} from '../../redux/incomesCategoriesSlice';
@@ -40,10 +40,9 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
             case 'category-name':
                 setCategoryLabel(value);
                 break;
-            // case 'description':
-            //     setDescription(value);
-            //     break;
-            
+            case 'description':
+                setDescription(value);
+                break;
             default:
                 break;
         }
@@ -69,7 +68,7 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
                 label: categoryLabel,
                 value: categoryValue,
                 icon: categoryIcon,
-                // description,
+                description,
                 groupCategory,
             }));
         }
@@ -78,7 +77,7 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
                 label: categoryLabel,
                 value: categoryValue,
                 icon: categoryIcon,
-               // description,
+                description, 
                 groupCategory
             }));
         }
@@ -100,18 +99,18 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
         <AddFormWrapper className={active ? "active": "inactive"} onClick={closeForm}>
             <StyledAddForm onClick={e => e.stopPropagation()}>
                 <button className="close-btn" onClick={closeForm}>X</button>
-                <h1>Add new category</h1>
-            <InputGroup>
-                <label htmlFor='category-name' className="input-group__label"> Name</label>
-                <input onInput={handleInput} name='category-name' id='category-name' type="text" className='form-input'/>
-            </InputGroup>
-            {/* <InputGroup>
-                <label htmlFor='description' className="input-group__label">Description</label>
-                <input onInput={handleInput} name='description' id='description' type="text" className='form-input'/>
-            </InputGroup> */}
-            <InputGroup>
-                <label htmlFor='group-category' className="input-group__label">Select category type</label>
-                <Select 
+                <FormTitle>Add new category</FormTitle>
+            <FormGroup className='fullwidth'>
+                <FormLabel htmlFor='category-name' className="input-group__label"> Name</FormLabel>
+                <FormInput onInput={handleInput} name='category-name' id='category-name' type="text" className='form-input'/>
+            </FormGroup>
+            <FormGroup className='fullwidth'>
+                <FormLabel htmlFor='description' className="input-group__label">Description</FormLabel>
+                <FormInput onInput={handleInput} name='description' id='description' type="text" className='form-input'/>
+            </FormGroup>
+            <FormGroup className='fullwidth'>
+                <FormLabel htmlFor='group-category' className="input-group__label">Select category type</FormLabel>
+                <FormSelect 
                     name='group-category'
                     isSearchable 
                     isClearable 
@@ -120,8 +119,8 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
                     onChange={handleSelectChange}
                     components={{ Option: IconOption }}
                 />
-            </InputGroup>
-            <Button onClick={handleClick}>Add new category</Button>
+            </FormGroup>
+            <FormButton onClick={handleClick}>New category</FormButton>
         </StyledAddForm>
         </AddFormWrapper>
     );
