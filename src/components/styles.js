@@ -304,7 +304,7 @@ export const CategoryCardWrapper = styled.div`
       user-select: none;
     }
     ul {
-      padding: 10px 20px;
+      padding: 10px;
     }
     li {
       font-size: 12px;
@@ -317,6 +317,24 @@ export const CategoryCardWrapper = styled.div`
     }
   }
 `;
+
+// export const CategoryItem = styled.div`
+//   display: flex;
+//   justify-content: space-between;
+//   & .icon-trash {
+//     pointer-events: none;
+//     user-select: none;
+//   }
+//   li {
+//     font-size: 12px;
+//   }
+//   button {
+//     padding: 0;
+//     font-size: 11px;
+//     height: 13px;
+//     cursor: pointer;
+//   }
+// `;
 
 export const StyledFilterForm = styled(StyledSortForm)`
   & .filter-label {

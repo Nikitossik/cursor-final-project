@@ -30,7 +30,6 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
     const [categoryLabel, setCategoryLabel] = useState('');
     const [categoryValue, setCategoryValue] = useState('');
     const [categoryIcon, setCategoryIcon] = useState(faQuestionCircle);
-    const [description, setDescription] = useState('');
     const [groupCategory, setGroupCategory] = useState('');
 
     const handleInput = e => {
@@ -40,9 +39,6 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
             case 'category-name':
                 setCategoryLabel(value);
                 break;
-            // case 'description':
-            //     setDescription(value);
-            //     break;
             
             default:
                 break;
@@ -63,7 +59,6 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
                 label: categoryLabel,
                 value: categoryValue,
                 icon: categoryIcon,
-                // description,
                 groupCategory,
             }));
         }
@@ -72,7 +67,6 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
                 label: categoryLabel,
                 value: categoryValue,
                 icon: categoryIcon,
-               // description,
                 groupCategory
             }));
         }
@@ -101,10 +95,6 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
                 <label htmlFor='category-name' className="input-group__label"> Name</label>
                 <input onInput={handleInput} name='category-name' id='category-name' type="text" className='form-input'/>
             </InputGroup>
-            {/* <InputGroup>
-                <label htmlFor='description' className="input-group__label">Description</label>
-                <input onInput={handleInput} name='description' id='description' type="text" className='form-input'/>
-            </InputGroup> */}
             <InputGroup>
                 <label htmlFor='group-category' className="input-group__label">Select category type</label>
                 <Select 
