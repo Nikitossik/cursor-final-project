@@ -1,5 +1,5 @@
-import { AddFormWrapper, StyledAddForm, InputGroup, Button } from '../styles';
-import { useState } from 'react';
+import {AddFormWrapper, StyledAddForm, FormGroup, FormLabel, FormInput, FormTitle, FormSelect, FormButton} from '../styles';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import {addIncomesCategories} from '../../redux/incomesCategoriesSlice';
 import {addChargesCategories} from '../../redux/chargesCategoriesSlice';
@@ -39,17 +39,25 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
             case 'category-name':
                 setCategoryLabel(value);
                 break;
-            
+case 'description':
+                setDescription(value);
+                break;
             default:
                 break;
         }
     }
 
+    useEffect(() => {
+        setCategoryValue(formatCategoryValue(categoryLabel));
+    }, [categoryLabel]);
+
+    useEffect(() => {   
+        setCategoryIcon(getCategoryIcon(groupCategories, groupCategory));
+    }, [groupCategory]);
+
     const handleSelectChange = e => {
         const {value} = e;
         setGroupCategory(value);
-        setCategoryValue(formatCategoryValue(categoryLabel));
-        setCategoryIcon(getCategoryIcon(groupCategories, categoryValue));
     }
 
     const handleClick = e => {
@@ -59,6 +67,7 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
                 label: categoryLabel,
                 value: categoryValue,
                 icon: categoryIcon,
+                description,
                 groupCategory,
             }));
         }
@@ -67,6 +76,7 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
                 label: categoryLabel,
                 value: categoryValue,
                 icon: categoryIcon,
+                description, 
                 groupCategory
             }));
         }
@@ -80,24 +90,26 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
     const formatCategoryValue = str => str ? str.toLowerCase().match(/([\wа-яА-Я]+)/gi).join('-') : str;
     
     const getCategoryIcon = (groups, value) => {
-        const category = groups.find(item => item.value === value)
-        return category ? category.icon : faQuestionCircle;
+        const group = groups.find(group => group.value === value);
+        return group ? group.icon : faQuestionCircle;
     }
-
-    console.log(faQuestionCircle);
 
     return (
         <AddFormWrapper className={active ? "active": "inactive"} onClick={closeForm}>
             <StyledAddForm onClick={e => e.stopPropagation()}>
                 <button className="close-btn" onClick={closeForm}>X</button>
-                <h1>Add new category</h1>
-            <InputGroup>
-                <label htmlFor='category-name' className="input-group__label"> Name</label>
-                <input onInput={handleInput} name='category-name' id='category-name' type="text" className='form-input'/>
-            </InputGroup>
-            <InputGroup>
-                <label htmlFor='group-category' className="input-group__label">Select category type</label>
-                <Select 
+             <FormTitle>Add new category</FormTitle>
+            <FormGroup className='fullwidth'>
+                <FormLabel htmlFor='category-name' className="input-group__label"> Name</FormLabel>
+                <FormInput onInput={handleInput} name='category-name' id='category-name' type="text" className='form-input'/>
+            </FormGroup>
+            <FormGroup className='fullwidth'>
+                <FormLabel htmlFor='description' className="input-group__label">Description</FormLabel>
+                <FormInput onInput={handleInput} name='description' id='description' type="text" className='form-input'/>
+            </FormGroup>
+            <FormGroup className='fullwidth'>
+                <FormLabel htmlFor='group-category' className="input-group__label">Select category type</FormLabel>
+                <FormSelect 
                     name='group-category'
                     isSearchable 
                     isClearable 
@@ -106,8 +118,8 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
                     onChange={handleSelectChange}
                     components={{ Option: IconOption }}
                 />
-            </InputGroup>
-            <Button onClick={handleClick}>Add new category</Button>
+            </FormGroup>
+            <FormButton onClick={handleClick}>New category</FormButton>
         </StyledAddForm>
         </AddFormWrapper>
     );

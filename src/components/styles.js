@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import wallet from "../assets/wallet1.jpg";
 import { NavLink, Link } from "react-router-dom";
+import Select from 'react-select';
+import DatePicker from 'react-datepicker';
 
 export const HeaderWrapper = styled.div`
   width: 100%;
@@ -92,83 +94,7 @@ export const AddFormWrapper = styled.div`
     pointer-events: all;
   }
 `;
-export const StyledAddForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 350px;
-  box-shadow: 1px 1px 2px #000;
-  background-color: rgb(238, 238, 238);
-  padding: 15px;
-  border-radius: 5px;
-  position: relative;
-  .close-btn {
-    border: none;
-    width: 10px;
-    text-align: right;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  }
-`;
 
-export const InputGroup = styled.div`
-  margin: 5px 0 10px;
-  width: 100%;
-
-  .input-group__label {
-    font-size: 1rem;
-    line-height: 1.5;
-    margin-bottom: 5px;
-  }
-
-  .form-input {
-    padding: 8px 15px;
-    font-size: 0.8rem;
-    border: 1px solid #222;
-    border-radius: 4px;
-    width: 100%;
-    max-width: 100%;
-    display: block;
-  }
-
-  .form-select {
-    font-size: 0.8rem;
-    border: 1px solid #222;
-    border-radius: 4px;
-  }
-
-  .option-icon {
-    margin-right: 10px;
-    font-size: 1rem;
-    color: #23285f;
-  }
-`;
-
-export const Button = styled.button`
-  border-radius: 4px;
-  border: 1px solid #222;
-  padding: 10px 15px;
-  max-width: 100%;
-  min-width: 120px;
-  font-size: 1rem;
-  background-color: #f9e8b4;
-  color: #222;
-  cursor: pointer;
-`;
-
-export const AddButton = styled.button`
-  width: 160px;
-  min-width: 160px;
-  border-radius: 4px;
-  border: 1px solid #222;
-  padding: 10px 15px;
-  font-size: 0.9rem;
-  background-color: #f9e8b4;
-  color: #222;
-  text-decoration: none;
-  cursor: pointer;
-`;
 
 export const SectionTitle = styled.h2`
   font-size: 1.2rem;
@@ -240,28 +166,167 @@ export const MessageContainer = styled.div`
   }
 `;
 
-export const StyledSortForm = styled.form`
-  min-width: 120px;
+export const StyledForm = styled.form`
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 7px;
+`;
 
-  & .sort-label {
+export const StyledAddForm = styled(StyledForm)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 350px;
+  box-shadow: 1px 1px 2px #000;
+  background-color: rgb(238, 238, 238);
+  padding: 15px;
+  border-radius: 5px;
+  position: relative;
+  .close-btn {
+    border: none;
+    width: 10px;
+    text-align: right;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+`;
+
+export const AddButton = styled.button`
+  width: 160px;
+  min-width: 160px;
+  font-size: 1rem;
+  background-color: #569FFF;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-radius: 4px;
+  padding: 10px 15px;
+  outline: none;
+  font-size: 1rem;
+  transition: 100ms all;
+`;
+
+export const FormButton = styled(AddButton)`
+  width: 100%;
+`;
+
+export const FormTitle = styled.h2`
+  color:#222;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin-bottom: 10px;
+  text-align: left;
+`;
+
+export const FormGroup = styled.div`
+  min-width: 150px;
+  margin: 0 5px 5px 5px;
+
+
+  &.period{
+    display: ${props => props.isPeriod ? "block" : "none"};
+  }
+
+  &.fullwidth{
+    min-width: unset;
+    width: 100%;
+    margin: 5px 0;
+  }
+`;
+
+export const FormInput = styled.input`
+  width: 100%;
+  min-height: 40px;
+  border: 2px solid #CCCCCC;
+  border-radius: 4px;
+  padding: 2px 8px;
+  outline: none;
+  font-size: 1rem;
+  transition: 100ms all;
+
+  &:focus-visible, &:focus, &:focus-within{
+    border: 2px solid #2684ff;
+  }
+
+  &[type='radio'].sort-radio{
+    display: none;
+  }
+
+  &[type='radio'].sort-radio:checked + label{
+    border: 2px solid #2684ff;
+  }
+`;
+
+export const FormLabel = styled.label`
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-right: 5px;
+  user-select: none;
+`;
+
+export const SortLabel = styled(FormLabel)`
+  margin-right: 3px;
+  font-size: 1rem;
+  min-height: 40px;
+  padding: 10px 8px;
+  border: 2px solid #CCCCCC;
+  background-color: #fff;
+  border-radius: 4px;
+  cursor:pointer;
+  transition: 100ms all;
+`;
+
+export const FormSelect = styled(Select)`
+  width: 100%;
+  font-size: 1rem;
+  border: 1px solid #333;
+  border: 1px solid #CCCCCC;
+  border-radius: 4px;
+
+  .option-icon {
+    margin-right: 10px;
     font-size: 1rem;
-    line-height: 1.5;
-    margin-right: 5px;
+    color: #23285f;
+  }
+`;
+
+export const FormToggler = styled.input`
+  &[type='checkbox']{
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 20px;
+    width: 2rem;
+    height: 1rem;
+    margin-left: 5px;
+    background: #ccc;
+    transition: 100ms all;
+    position: relative;
   }
 
-  & .sort-select {
-    padding: 8px 15px;
-    font-size: 0.8rem;
-    border: 1px solid #222;
-    border-radius: 4px;
-    min-width: 120px;
-    margin-right: 10px;
+  &[type='checkbox']:checked{
+    background-color: #2684ff;
   }
 
-  & .reverse-checkbox {
-    margin-right: 10px;
+  &[type='checkbox']::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    background-color: #fff;
+    width: 1rem;
+    height: 1rem;
+    transform: scale(1.2);
+    box-shadow: rgba(0,0,0,0.4) 0 0 5px; 
+    transition: 100ms all;
+  }
+
+  &[type='checkbox']:checked::before{
+    left: 1rem;
   }
 `;
 
@@ -318,24 +383,6 @@ export const CategoryCardWrapper = styled.div`
   }
 `;
 
-// export const CategoryItem = styled.div`
-//   display: flex;
-//   justify-content: space-between;
-//   & .icon-trash {
-//     pointer-events: none;
-//     user-select: none;
-//   }
-//   li {
-//     font-size: 12px;
-//   }
-//   button {
-//     padding: 0;
-//     font-size: 11px;
-//     height: 13px;
-//     cursor: pointer;
-//   }
-// `;
-
 export const StyledFilterForm = styled(StyledSortForm)`
   & .filter-label {
     font-size: 1rem;
@@ -351,16 +398,16 @@ export const StyledFilterForm = styled(StyledSortForm)`
     margin-right: 10px;
   }
 
-  & .filter-input {
-    padding: 8px 15px;
-    font-size: 0.8rem;
-    border: 1px solid #222;
-    border-radius: 4px;
-    min-width: 120px;
-    display: block;
-  }
 
-  & .filter-input[type="date"] {
-    display: ${(props) => (props.isPeriod ? "block" : "none")};
+export const SectionHeader = styled.header`
+  display: flex;
+  padding: 10px 0 20px 0;
+  .forms-block{
+    flex: 1 0 80%;
+    display: flex;
+    flex-direction: column;
+  }
+  .button-block{
+    flex: 1 0 20%;
   }
 `;

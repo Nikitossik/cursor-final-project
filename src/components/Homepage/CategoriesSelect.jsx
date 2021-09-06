@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Select, {components} from 'react-select';
+import {components} from 'react-select';
+import {FormSelect} from '../styles'
 
 import { selectChargesCategories } from '../../redux/chargesCategoriesSlice';
 import { selectIncomesCategories } from '../../redux/incomesCategoriesSlice';
@@ -24,12 +25,11 @@ export default function CategoriesSelect({title, className, handler, isMulti}) {
     const selectCategories = title === 'charge' ? chargesCategories : incomesCategories;
 
     return (
-        <Select 
+        <FormSelect 
             name='category'
             id="category"
             isMulti={isMulti}
             isSearchable 
-            isClearable 
             className={className}  
             options={selectCategories}
             components={{Option: IconOption}}

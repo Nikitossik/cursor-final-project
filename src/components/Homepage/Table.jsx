@@ -98,7 +98,7 @@ class Table extends React.Component {
         const {filterText, filterDateOption, filterCategories, startDate, endDate} = params;
         let resultData = this.filterByText(data, filterText);
         if (filterCategories.length !== 0) resultData = this.filterByCategories(resultData, filterCategories);
-        if (filterDateOption) resultData = this.filterByDateOption(resultData, filterDateOption, startDate, endDate);
+        if (filterDateOption) resultData = this.filterByDateOption(resultData, filterDateOption.value, startDate, endDate);
         return resultData;
     }
 
