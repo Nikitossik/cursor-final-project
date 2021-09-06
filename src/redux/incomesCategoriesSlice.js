@@ -1,12 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCreditCard,
   faPercent,
   faPiggyBank,
-  faGift
+  faGift,
 } from "@fortawesome/free-solid-svg-icons";
 
 let initialState = [
@@ -67,13 +66,29 @@ export const slice = createSlice({
       return state;
     },
     deleteIncomesCategories: (state, action) => {
-      state.splice(state.findIndex(item => item.id === action.payload.id), 1);
+      state.splice(
+        state.findIndex((item) => item.id === action.payload.id),
+        1
+      );
+      return state;
+    },
+    editIncomesCategories: (state, action) => {
+      console.log("action.payload", action.payload);
+      state.map((item) => {
+        item.id === action.payload.id
+          ? (item.label = action.payload.label)
+          : (item.label = item.label);
+      });
       return state;
     },
   },
 });
 
-export const { addIncomesCategories, deleteIncomesCategories } = slice.actions;
+export const {
+  addIncomesCategories,
+  deleteIncomesCategories,
+  editIncomesCategories,
+} = slice.actions;
 
 export const selectIncomesCategories = (state) => state.incomesCategories;
 
