@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import wallet from "../assets/wallet1.jpg";
 import { NavLink, Link } from "react-router-dom";
-import Select from 'react-select';
-import DatePicker from 'react-datepicker';
+import Select from "react-select";
+import DatePicker from "react-datepicker";
 
 export const HeaderWrapper = styled.div`
   width: 100%;
@@ -94,7 +94,6 @@ export const AddFormWrapper = styled.div`
     pointer-events: all;
   }
 `;
-
 
 export const SectionTitle = styled.h2`
   font-size: 1.2rem;
@@ -197,11 +196,11 @@ export const AddButton = styled.button`
   width: 160px;
   min-width: 160px;
   font-size: 1rem;
-  background-color: #569FFF;
+  background-color: #569fff;
   color: #fff;
   text-decoration: none;
   cursor: pointer;
-  border: 2px solid rgba(255,255,255,0.4);
+  border: 2px solid rgba(255, 255, 255, 0.4);
   border-radius: 4px;
   padding: 10px 15px;
   outline: none;
@@ -214,7 +213,7 @@ export const FormButton = styled(AddButton)`
 `;
 
 export const FormTitle = styled.h2`
-  color:#222;
+  color: #222;
   font-size: 1.2rem;
   line-height: 1.5;
   margin-bottom: 10px;
@@ -225,12 +224,11 @@ export const FormGroup = styled.div`
   min-width: 150px;
   margin: 0 5px 5px 5px;
 
-
-  &.period{
-    display: ${props => props.isPeriod ? "block" : "none"};
+  &.period {
+    display: ${(props) => (props.isPeriod ? "block" : "none")};
   }
 
-  &.fullwidth{
+  &.fullwidth {
     min-width: unset;
     width: 100%;
     margin: 5px 0;
@@ -240,22 +238,24 @@ export const FormGroup = styled.div`
 export const FormInput = styled.input`
   width: 100%;
   min-height: 40px;
-  border: 2px solid #CCCCCC;
+  border: 2px solid #cccccc;
   border-radius: 4px;
   padding: 2px 8px;
   outline: none;
   font-size: 1rem;
   transition: 100ms all;
 
-  &:focus-visible, &:focus, &:focus-within{
+  &:focus-visible,
+  &:focus,
+  &:focus-within {
     border: 2px solid #2684ff;
   }
 
-  &[type='radio'].sort-radio{
+  &[type="radio"].sort-radio {
     display: none;
   }
 
-  &[type='radio'].sort-radio:checked + label{
+  &[type="radio"].sort-radio:checked + label {
     border: 2px solid #2684ff;
   }
 `;
@@ -273,10 +273,10 @@ export const SortLabel = styled(FormLabel)`
   font-size: 1rem;
   min-height: 40px;
   padding: 10px 8px;
-  border: 2px solid #CCCCCC;
+  border: 2px solid #cccccc;
   background-color: #fff;
   border-radius: 4px;
-  cursor:pointer;
+  cursor: pointer;
   transition: 100ms all;
 `;
 
@@ -284,7 +284,7 @@ export const FormSelect = styled(Select)`
   width: 100%;
   font-size: 1rem;
   border: 1px solid #333;
-  border: 1px solid #CCCCCC;
+  border: 1px solid #cccccc;
   border-radius: 4px;
 
   .option-icon {
@@ -295,7 +295,7 @@ export const FormSelect = styled(Select)`
 `;
 
 export const FormToggler = styled.input`
-  &[type='checkbox']{
+  &[type="checkbox"] {
     -webkit-appearance: none;
     appearance: none;
     border-radius: 20px;
@@ -307,12 +307,12 @@ export const FormToggler = styled.input`
     position: relative;
   }
 
-  &[type='checkbox']:checked{
+  &[type="checkbox"]:checked {
     background-color: #2684ff;
   }
 
-  &[type='checkbox']::before{
-    content: '';
+  &[type="checkbox"]::before {
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -321,11 +321,11 @@ export const FormToggler = styled.input`
     width: 1rem;
     height: 1rem;
     transform: scale(1.2);
-    box-shadow: rgba(0,0,0,0.4) 0 0 5px; 
+    box-shadow: rgba(0, 0, 0, 0.4) 0 0 5px;
     transition: 100ms all;
   }
 
-  &[type='checkbox']:checked::before{
+  &[type="checkbox"]:checked::before {
     left: 1rem;
   }
 `;
@@ -383,6 +383,11 @@ export const CategoryCardWrapper = styled.div`
   }
 `;
 
+export const StyledSortForm = styled.form`
+  display: flex;
+  align-items: center;
+`;
+
 export const StyledFilterForm = styled(StyledSortForm)`
   & .filter-label {
     font-size: 1rem;
@@ -397,17 +402,17 @@ export const StyledFilterForm = styled(StyledSortForm)`
     min-width: 200px;
     margin-right: 10px;
   }
-
+`;
 
 export const SectionHeader = styled.header`
   display: flex;
   padding: 10px 0 20px 0;
-  .forms-block{
+  .forms-block {
     flex: 1 0 80%;
     display: flex;
     flex-direction: column;
   }
-  .button-block{
+  .button-block {
     flex: 1 0 20%;
   }
 `;

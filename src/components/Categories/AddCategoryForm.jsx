@@ -29,17 +29,17 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
     const dispatch = useDispatch();
     const [categoryLabel, setCategoryLabel] = useState('');
     const [categoryValue, setCategoryValue] = useState('');
+    const [description, setDescription] = useState('');
     const [categoryIcon, setCategoryIcon] = useState(faQuestionCircle);
     const [groupCategory, setGroupCategory] = useState('');
 
     const handleInput = e => {
         const {name, value} = e.target;
-
         switch (name) {
             case 'category-name':
                 setCategoryLabel(value);
                 break;
-case 'description':
+            case 'description':
                 setDescription(value);
                 break;
             default:
