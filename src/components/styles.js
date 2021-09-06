@@ -369,7 +369,7 @@ export const CategoryCardWrapper = styled.div`
       user-select: none;
     }
     ul {
-      padding: 10px 20px;
+      padding: 10px;
     }
     li {
       font-size: 12px;
@@ -382,6 +382,21 @@ export const CategoryCardWrapper = styled.div`
     }
   }
 `;
+
+export const StyledFilterForm = styled(StyledSortForm)`
+  & .filter-label {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-right: 5px;
+  }
+
+  & .filter-select {
+    padding: 8px 15px;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    min-width: 200px;
+    margin-right: 10px;
+  }
 
 
 export const SectionHeader = styled.header`

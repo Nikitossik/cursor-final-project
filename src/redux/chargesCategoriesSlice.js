@@ -124,13 +124,29 @@ export const slice = createSlice({
       return state;
     },
     deleteChargesCategories: (state, action) => {
-      state.splice(state.findIndex(item => item.id === action.payload.id), 1);
+      state.splice(
+        state.findIndex((item) => item.id === action.payload.id),
+        1
+      );
+      return state;
+    },
+    editChargesCategories: (state, action) => {
+      console.log("action.payload", action.payload);
+      state.map((item) => {
+        item.id === action.payload.id
+          ? (item.label = action.payload.label)
+          : (item.label = item.label);
+      });
       return state;
     },
   },
 });
 
-export const { addChargesCategories, deleteChargesCategories } = slice.actions;
+export const {
+  addChargesCategories,
+  deleteChargesCategories,
+  editChargesCategories,
+} = slice.actions;
 
 export const selectChargesCategories = (state) => state.chargesCategories;
 

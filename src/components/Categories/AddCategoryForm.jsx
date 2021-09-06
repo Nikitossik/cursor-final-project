@@ -30,7 +30,6 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
     const [categoryLabel, setCategoryLabel] = useState('');
     const [categoryValue, setCategoryValue] = useState('');
     const [categoryIcon, setCategoryIcon] = useState(faQuestionCircle);
-    const [description, setDescription] = useState('');
     const [groupCategory, setGroupCategory] = useState('');
 
     const handleInput = e => {
@@ -40,7 +39,7 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
             case 'category-name':
                 setCategoryLabel(value);
                 break;
-            case 'description':
+case 'description':
                 setDescription(value);
                 break;
             default:
@@ -99,7 +98,7 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
         <AddFormWrapper className={active ? "active": "inactive"} onClick={closeForm}>
             <StyledAddForm onClick={e => e.stopPropagation()}>
                 <button className="close-btn" onClick={closeForm}>X</button>
-                <FormTitle>Add new category</FormTitle>
+             <FormTitle>Add new category</FormTitle>
             <FormGroup className='fullwidth'>
                 <FormLabel htmlFor='category-name' className="input-group__label"> Name</FormLabel>
                 <FormInput onInput={handleInput} name='category-name' id='category-name' type="text" className='form-input'/>
