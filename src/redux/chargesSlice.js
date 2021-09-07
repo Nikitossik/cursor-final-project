@@ -22,10 +22,20 @@ export const slice = createSlice({
       );
       return state;
     },
+    editCharge: (state, action) => {
+      state.map((item) => {
+        if (item.id === action.payload.id) {
+          item.money = action.payload.money;
+          item.description = action.payload.description;
+        }
+      });
+      return state;
+    },
   },
 });
 
-export const { addCharge, hydrateCharges, deleteCharge } = slice.actions;
+export const { addCharge, hydrateCharges, deleteCharge, editCharge } =
+  slice.actions;
 
 export const selectCharges = (state) => state.charges;
 

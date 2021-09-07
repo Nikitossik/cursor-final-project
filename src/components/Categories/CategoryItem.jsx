@@ -22,8 +22,10 @@ const CategoryItem = ({ title, label, id}) => {
     }
 
     const handleEditClick = e => {
+        console.log(e.target);
         setDisabled(false);
     }
+    
     const handleClick = e => {
         const id = e.target.value;
         e.preventDefault();
