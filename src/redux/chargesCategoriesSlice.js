@@ -131,7 +131,6 @@ export const slice = createSlice({
       return state;
     },
     editChargesCategories: (state, action) => {
-      console.log("action.payload", action.payload);
       state.map((item) => {
         item.id === action.payload.id
           ? (item.label = action.payload.label)

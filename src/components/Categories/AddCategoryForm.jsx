@@ -39,7 +39,7 @@ function AddCategoryForm({ active, setActive, title, groupCategories }) {
             case 'category-name':
                 setCategoryLabel(value);
                 break;
-            case 'description':
+                case 'description':
                 setDescription(value);
                 break;
             default:
