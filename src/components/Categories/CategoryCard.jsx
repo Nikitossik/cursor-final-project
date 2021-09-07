@@ -1,34 +1,13 @@
-import { CategoryCardWrapper } from '../styles';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faEdit,
-    faTrashAlt,
-} from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from 'react-redux';
-import { deleteChargesCategories } from '../../redux/chargesCategoriesSlice';
-import { deleteIncomesCategories } from '../../redux/incomesCategoriesSlice';
+import { CategoryCardWrapper} from '../styles';
+import CategoryItem from './CategoryItem';
 
 const CategoryCard = ({ title, value, label, background, categories }) => {
-const dispatch = useDispatch();
+
     let categoryList = [];
     categoryList = categories.filter(category => {
         return (category.groupCategory === value)
     });
 
-    const handleClick = e => {
-        const id = e.target.value;
-        e.preventDefault();
-        if (title === 'incomes'){
-            dispatch(deleteIncomesCategories({
-            id
-            }));
-        }
-        else if (title === 'charges') {
-            dispatch(deleteChargesCategories({
-              id
-            }));
-        }
-    }
 
     return (
         <CategoryCardWrapper>
@@ -36,17 +15,8 @@ const dispatch = useDispatch();
             <div className="card-content">
                 <h3>{label}</h3>
                 <ul>
-                    {categoryList.map((category) => (
-                        <div className="category-item" key={category.id}>
-                            <li {...category}>{category.label}</li>
-                            <button 
-                                value={category.id} 
-                                onClick={handleClick}
-                            >
-                                <FontAwesomeIcon className="icon-trash" icon={faTrashAlt} />
-                            </button>
-                        </div>))
-                    }
+                    {categoryList.map(category => (
+                        <CategoryItem {...category} className="category-item" key={category.id} title={title}/>))}
                  </ul>
             </div>           
         </CategoryCardWrapper>

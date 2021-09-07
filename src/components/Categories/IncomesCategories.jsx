@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState} from "react";
 import { AddButton, CategoryBlock} from '../styles';
 import AddCategoryForm from './AddCategoryForm';
 import CategoryCard from './CategoryCard';
