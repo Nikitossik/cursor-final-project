@@ -396,3 +396,4 @@ export const SectionHeader = styled.header`
     flex: 1 0 20%;
   }
 `;
+
