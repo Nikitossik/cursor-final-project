@@ -62,13 +62,15 @@ export const StyledTable = styled.table`
       border: none;
     }
   }
-
   thead {
     color: #ffffff;
     background: black;
   }
   tbody tr:nth-child(odd) {
     background: rgb(238, 238, 238);
+  }
+  input {
+    border: none;
   }
 `;
 export const AddFormWrapper = styled.div`
@@ -379,6 +381,11 @@ export const CategoryCardWrapper = styled.div`
       font-size: 11px;
       height: 13px;
       cursor: pointer;
+    }
+    input {
+      border: none;
+      color: white;
+      background: transparent;
     }
   }
 `;

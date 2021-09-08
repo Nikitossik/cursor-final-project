@@ -27,6 +27,7 @@ export const slice = createSlice({
         if (item.id === action.payload.id) {
           item.money = action.payload.money;
           item.description = action.payload.description;
+          item.date = action.payload.date;
         }
       });
       return state;
